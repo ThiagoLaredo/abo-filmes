@@ -1,0 +1,31 @@
+.video-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+  }
+  
+  .video-frame {
+    position: relative;
+    margin-bottom: 2rem;
+    cursor: pointer;
+  }
+
+  .video-frame:last-child {
+    margin-bottom: 0;
+  }
+  
+  .video-frame img {
+    width: 100%;
+    max-width: 1000px;
+    display: block;
+    border-radius: 8px;
+  }
+  
+  .play-icon-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none; /* clique passa para o frame */
+  }

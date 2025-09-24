@@ -1,0 +1,70 @@
+/* Hero.css */
+
+/* Mantém o hero ocupando a tela toda */
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+/* === Seta discreta === */
+.scroll-indicator {
+  position: absolute;
+  bottom: 20px;  /* fixa no bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 3;
+  animation: blink 1.5s infinite;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.scroll-indicator:focus {
+  outline: none;
+}
+
+/* animação de piscar */
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}

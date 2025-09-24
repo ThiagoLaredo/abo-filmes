@@ -1,0 +1,11 @@
+/* src/components/Footer.css */
+.footer {
+    background-color: #fff;
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300; /* fonte fina */
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9rem;
+    border-top: 1px solid #e5e5e5; /* linha sutil separando */
+  }  

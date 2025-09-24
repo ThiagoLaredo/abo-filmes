@@ -1,0 +1,14 @@
+.play-icon {
+  cursor: pointer;
+}
+
+.play-triangle {
+  fill: none;
+  stroke: white;
+  stroke-width: 4;
+  transition: all 0.3s ease;
+}
+
+.play-icon:hover .play-triangle {
+  stroke: red !important; /* Força a cor para testar */
+}
