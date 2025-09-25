@@ -15,6 +15,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  clip-path: inset(100% 0 0 0); /* começa "fechado" */
 }
 
 .overlay {
@@ -55,16 +56,35 @@
   font-size: 2rem;
   cursor: pointer;
   z-index: 3;
-  animation: blink 1.5s infinite;
+  opacity: 0; /* começa invisível */
+  transform: translate(-50%, 20px); /* levemente deslocada para baixo */
   -webkit-tap-highlight-color: transparent;
+}
+
+.scroll-indicator.blink {
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
 }
 
 .scroll-indicator:focus {
   outline: none;
 }
 
-/* animação de piscar */
-@keyframes blink {
-  0%, 50%, 100% { opacity: 1; }
-  25%, 75% { opacity: 0; }
+
+/* Responsividade */
+@media (max-width: 768px) {
+
+  .hero-content h1 {
+    font-size: 2rem;
+    padding: 0 20px;
+  }
+
+  .scroll-indicator {
+    bottom: 100px;  /* aumenta o bottom para afastar do texto */
+  }
+
 }

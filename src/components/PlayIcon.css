@@ -13,6 +13,6 @@
 
 /* Fundo branco atrás do play vazado no hover */
 .video-frame:hover .play-triangle {
-  fill: white; /* Preenchimento branco */
+  stroke-width: 6;
   transform: scale(1.1);
 }
