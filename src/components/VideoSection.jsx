@@ -9,9 +9,21 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function VideoSection() {
   const videos = [
-    { src: "/video1.mp4", thumb: "/thumbnail1.webp" },
-    { src: "/video2.mp4", thumb: "/thumbnail2.webp" },
-    { src: "/video3.mp4", thumb: "/thumbnail3.webp" },
+    {
+      src: "/video1.mp4",
+      thumb: "/thumbnail1.webp",
+      alt: "Making of vídeo 1 da Abó Filmes",
+    },
+    {
+      src: "/video2.mp4",
+      thumb: "/thumbnail2.webp",
+      alt: "Making of vídeo 2 da Abó Filmes",
+    },
+    {
+      src: "/video3.mp4",
+      thumb: "/thumbnail3.webp",
+      alt: "Making of vídeo 3 da Abó Filmes",
+    },
   ];
 
   const [modalVideo, setModalVideo] = useState(null);
@@ -28,7 +40,7 @@ export default function VideoSection() {
           ease: "power3.out",
           scrollTrigger: {
             trigger: frame,
-            start: "top 80%", // quando 20% do viewport abaixo já vê o frame
+            start: "top 80%",
             toggleActions: "play none none reverse",
           },
         }
@@ -36,23 +48,44 @@ export default function VideoSection() {
     });
   }, []);
 
+  // Função para teclado: Enter ou Space abre modal
+  const handleKeyDown = (event, videoSrc) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setModalVideo(videoSrc);
+    }
+  };
+
   return (
     <section
       id="videos"
       className="video-section"
-      aria-label="Vídeos Abó Filmes"
+      aria-label="Galeria de vídeos Abó Filmes"
     >
       {videos.map((video, index) => (
         <div
           key={index}
           className="video-frame"
           onClick={() => setModalVideo(video.src)}
+          onKeyDown={(e) => handleKeyDown(e, video.src)}
           role="button"
           tabIndex={0}
+          aria-label={`Abrir vídeo ${index + 1}`}
         >
-          <img src={video.thumb} alt={`Vídeo ${index + 1}`} />
+          <picture>
+            {/* WebP otimizado */}
+            <source srcSet={video.thumb} type="image/webp" />
+            {/* Fallback JPEG/PNG */}
+            <img
+              src={video.thumb.replace(".webp", ".jpg")}
+              alt={video.alt}
+              loading="lazy"
+              width="1366"
+              height="768"
+            />
+          </picture>
           <div className="play-icon-wrapper">
-            <PlayIcon size={60} />
+            <PlayIcon size={60} aria-hidden="true" />
           </div>
         </div>
       ))}
