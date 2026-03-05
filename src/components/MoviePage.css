@@ -1,0 +1,14 @@
+.movie-page {
+  padding: 20px;
+  text-align: center;
+}
+
+.movie-page h1 {
+  margin-bottom: 20px;
+  color: white;
+}
+
+.vimeo-embed {
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,210 @@
+/* SideHeader.css */
+
+/* ========== ESTILOS DESKTOP (ORIGINAIS) ========== */
+.side-header {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  width: 60px;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  z-index: 1000;
+}
+
+.left-border {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 0;
+  background-color: white;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  outline: none;
+}
+
+.menu-toggle:focus {
+  outline: none;
+}
+
+.contact-link {
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+  margin: 20px 0;
+  position: relative;
+  transform: rotate(90deg);
+  white-space: nowrap;
+}
+
+.contact-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+.contact-link:hover::after {
+  width: 100%;
+}
+
+.social-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.social-icons a:hover {
+  background-color: white;
+  color: black;
+}
+
+.fullscreen-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  transform: translateX(-100%);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 50px;
+}
+
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.menu-link {
+  color: white;
+  text-decoration: none;
+  font-size: 48px;
+  font-weight: bold;
+  opacity: 0;
+  transform-origin: top center;
+}
+
+/* ========== BOTÃO MOBILE ========== */
+/* Por padrão (desktop), o botão mobile fica oculto */
+.mobile-menu-toggle {
+  display: none;
+}
+
+/* ========== ESTILOS MOBILE ========== */
+@media screen and (max-width: 768px) {
+  /* Oculta o side header original */
+  .side-header {
+    display: none;
+  }
+
+  /* Botão flutuante do menu - apenas ícone, sem caixa */
+  .mobile-menu-toggle {
+    display: flex;
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    background: none;        /* sem fundo */
+    border: none;            /* sem borda */
+    color: white;
+    font-size: 30px;         /* tamanho do ícone (se for ícone de fonte; para SVG, controlamos pelo componente) */
+    cursor: pointer;
+    z-index: 1001;
+    padding: 12px;           /* área de clique confortável */
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    /* remove qualquer traço de caixa */
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  /* Ajustes no menu fullscreen para mobile */
+  .fullscreen-menu {
+    padding-left: 0;
+    justify-content: center;
+  }
+
+  /* Centraliza os links do menu */
+  .menu-content {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    gap: 40px;
+  }
+
+  /* Reduz tamanho dos links para caber em telas pequenas */
+  .menu-link {
+    font-size: 36px;
+    display: block;
+    margin: 10px 0;
+  }
+
+  /* Container dos ícones sociais dentro do menu (horizontal) - garantido visível */
+  .social-icons-mobile {
+    display: flex !important;  /* força a aparecer */
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+  }
+
+  .social-icons-mobile a {
+    color: white;
+    font-size: 28px;
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  .social-icons-mobile a:hover {
+    background-color: white;
+    color: black;
+  }
+}
+
+/* Garante que os ícones móveis não apareçam no desktop */
+.social-icons-mobile {
+  display: none;
+}

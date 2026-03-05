@@ -45,7 +45,7 @@
   opacity: 0;
 }
 
-/* === Seta discreta === */
+/* === Scroll indicator === */
 .scroll-indicator {
   position: absolute;
   bottom: 20px;  /* fixa no bottom */
@@ -54,7 +54,6 @@
   background: none;
   border: none;
   color: white;
-  font-size: 2rem;
   cursor: pointer;
   z-index: 3;
   opacity: 0; /* começa invisível */
@@ -62,9 +61,24 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-.scroll-indicator.blink {
-  animation: blink 1.5s infinite;
+.mouse-icon {
+  width: 24px;
+  height: 36px;
 }
+
+.mouse-wheel {
+  animation: scroll 2s infinite;
+}
+
+@keyframes scroll {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+  100% { transform: translateY(0); }
+}
+
+/* .scroll-indicator.blink {
+  animation: blink 1.5s infinite;
+} */
 
 @keyframes blink {
   0%, 50%, 100% { opacity: 1; }

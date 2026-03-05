@@ -32,10 +32,7 @@ export default function Hero() {
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          onComplete: () => {
-            document.querySelector(".scroll-indicator")?.classList.add("blink");
-          },
+          duration: 0.8
         },
         "+=0.2"
       );
@@ -75,7 +72,33 @@ export default function Hero() {
         className="scroll-indicator"
         aria-label="Ir para a seção de vídeos"
       >
-        ↓
+        <svg
+          width="24"
+          height="36"
+          viewBox="0 0 24 36"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="mouse-icon"
+        >
+          <rect
+            x="1"
+            y="1"
+            width="22"
+            height="34"
+            rx="11"
+            ry="11"
+            stroke="white"
+            strokeWidth="2"
+            fill="none"
+          />
+          <circle
+            cx="12"
+            cy="10"
+            r="2"
+            fill="white"
+            className="mouse-wheel"
+          />
+        </svg>
       </a>
     </section>
   );
