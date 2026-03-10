@@ -46,7 +46,7 @@ const MovieGrid = () => {
   }, []); // Array vazio = executa apenas na montagem
 
   return (
-    <div className="movie-grid" ref={gridRef}>
+    <div className="movie-grid" id="filmes" ref={gridRef}>
       {movies.map((movie, index) => {
         const basePath = movie.image.replace(/\.webp$/, '');
         return (

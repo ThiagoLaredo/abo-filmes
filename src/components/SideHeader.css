@@ -42,6 +42,14 @@
   outline: none;
 }
 
+.menu-toggle:focus-visible,
+.mobile-menu-toggle:focus,
+.mobile-menu-toggle:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
 .menu-icon {
   width: 34px;
   height: 26px;
@@ -159,7 +167,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding-left: 50px;
+  padding-left: 200px;
   overflow: hidden;
 }
 
@@ -179,6 +187,27 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+}
+
+.menu-decor {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 96px;
+  height: 188px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.menu-decor-dot {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.56);
+  left: calc(12px + (var(--dot-col) * 22px));
+  top: calc(10px + (var(--dot-row) * 16px));
 }
 
 .menu-link {
@@ -220,28 +249,39 @@
   .mobile-menu-toggle {
     display: flex;
     position: fixed;
-    top: 14px;
-    right: 14px;
+    top: 12px;
+    right: 12px;
     background: none;        /* sem fundo */
     border: none;            /* sem borda */
     color: white;
     cursor: pointer;
     z-index: 1001;
-    padding: 12px;           /* área de clique confortável */
+    padding: 10px;           /* área de clique confortável */
     align-items: center;
     justify-content: center;
     outline: none;
     /* remove qualquer traço de caixa */
     width: auto;
     height: auto;
-    border-radius: 0;
+    border-radius: 12px;
+    background-color: transparent;
     box-shadow: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.25s ease;
+  }
+
+  .mobile-menu-toggle.is-mobile-scrolled {
+    background-color: rgba(0, 0, 0, 0.9);
   }
 
   /* Ajustes no menu fullscreen para mobile */
   .fullscreen-menu {
     padding-left: 0;
     justify-content: center;
+  }
+
+  .menu-decor {
+    display: none;
   }
 
   /* Centraliza os links do menu */

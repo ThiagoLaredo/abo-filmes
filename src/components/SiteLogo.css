@@ -12,8 +12,16 @@
 
 @media (max-width: 768px) {
   .site-logo {
-    top: 14px;
-    left: 14px;
+    top: 12px;
+    left: 12px;
     font-size: clamp(18px, 5.4vw, 24px);
+    padding: 8px 12px;
+    border-radius: 12px;
+    background-color: transparent;
+    transition: background-color 0.25s ease;
+  }
+
+  .site-logo.is-mobile-scrolled {
+    background-color: rgba(0, 0, 0, 0.9);
   }
 }

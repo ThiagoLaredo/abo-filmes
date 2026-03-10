@@ -7,11 +7,29 @@ import './SideHeader.css';
 const SideHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const [isMobileScrolled, setIsMobileScrolled] = useState(false);
   const borderRef = useRef(null);
   const menuRef = useRef(null);
   const curtainRef = useRef(null);
+  const decorDotsRef = useRef([]);
   const menuLinksRef = useRef([]);
   const isAnimatingRef = useRef(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      setIsMobileScrolled(isMobile && window.scrollY > 8);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, []);
 
   const openMenu = () => {
     if (isAnimatingRef.current || isMenuOpen) {
@@ -48,6 +66,17 @@ const SideHeader = () => {
         ease: 'power2.in',
       })
       .to(
+        decorDotsRef.current,
+        {
+          opacity: 0,
+          y: 16,
+          duration: 0.18,
+          stagger: { each: 0.008, from: 'end' },
+          ease: 'power1.in',
+        },
+        '-=0.14'
+      )
+      .to(
         curtainRef.current,
         {
           scaleY: 1,
@@ -83,6 +112,7 @@ const SideHeader = () => {
       gsap.fromTo(borderRef.current, { height: 0 }, { height: '100%', duration: 0.5, ease: 'power2.out' });
       gsap.set(menuRef.current, { x: '-100%', backgroundColor: '#ffffff' });
       gsap.set(curtainRef.current, { scaleY: 0, transformOrigin: 'top center' });
+      gsap.set(decorDotsRef.current, { opacity: 0, y: -26 });
       gsap.set(menuLinksRef.current, { opacity: 0, y: 34 });
 
       const openTl = gsap.timeline({
@@ -94,6 +124,17 @@ const SideHeader = () => {
       openTl
         .to(menuRef.current, { x: 0, duration: 0.55, ease: 'power3.out' })
         .to(menuRef.current, { backgroundColor: '#000000', duration: 0.25, ease: 'power1.out' }, '-=0.2')
+        .to(
+          decorDotsRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.22,
+            stagger: 0.012,
+            ease: 'power2.out',
+          },
+          '-=0.12'
+        )
         .to(
           menuLinksRef.current,
           {
@@ -151,7 +192,7 @@ const SideHeader = () => {
       </div>
 
       {/* Botão flutuante para mobile - aparece apenas no mobile */}
-      <button className="mobile-menu-toggle" onClick={toggleMenu} aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}>
+      <button className={`mobile-menu-toggle ${isMobileScrolled ? 'is-mobile-scrolled' : ''}`} onClick={toggleMenu} aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}>
         <MenuIcon />
       </button>
 
@@ -159,10 +200,21 @@ const SideHeader = () => {
       {isMenuVisible && (
         <div className="fullscreen-menu" ref={menuRef} onClick={closeMenu}>
           <div className="menu-close-curtain" ref={curtainRef}></div>
+          <div className="menu-decor" aria-hidden="true">
+            {Array.from({ length: 40 }).map((_, index) => (
+              <span
+                key={`decor-dot-${index}`}
+                className="menu-decor-dot"
+                ref={(el) => (decorDotsRef.current[index] = el)}
+                style={{ '--dot-col': index % 4, '--dot-row': Math.floor(index / 4) }}
+              ></span>
+            ))}
+          </div>
           <div className="menu-content" onClick={(e) => e.stopPropagation()}>
             <Link to="/sobre" className="menu-link" onClick={closeMenu} ref={(el) => (menuLinksRef.current[0] = el)}>{renderMenuLabel('SOBRE')}</Link>
-            <Link to="/contato" className="menu-link" onClick={closeMenu} ref={(el) => (menuLinksRef.current[1] = el)}>{renderMenuLabel('CONTATO')}</Link>
-            <Link to="/labcriativo" className="menu-link" onClick={closeMenu} ref={(el) => (menuLinksRef.current[2] = el)}>{renderMenuLabel('LAB CRIATIVO')}</Link>
+            <a href="/#filmes" className="menu-link" onClick={closeMenu} ref={(el) => (menuLinksRef.current[1] = el)}>{renderMenuLabel('FILMES')}</a>
+            <Link to="/contato" className="menu-link" onClick={closeMenu} ref={(el) => (menuLinksRef.current[2] = el)}>{renderMenuLabel('CONTATO')}</Link>
+            <Link to="/labcriativo" className="menu-link" onClick={closeMenu} ref={(el) => (menuLinksRef.current[3] = el)}>{renderMenuLabel('LAB CRIATIVO')}</Link>
 
             {/* Ícones sociais para mobile */}
             <div className="social-icons-mobile">

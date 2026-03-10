@@ -73,8 +73,8 @@
 /* Ajustes para mobile */
 @media (max-width: 768px) {
   .movie-grid {
-    gap: 15px;
-    padding: 15px;
+    gap: 20px;
+    padding: 0 20px;
   }
   .movie-item {
     width: calc((100% - 15px) / 2);
@@ -87,10 +87,7 @@
 }
 
 @media (max-width: 480px) {
-  .movie-grid {
-    gap: 12px;
-    padding: 12px;
-  }
+
   .movie-item {
     width: 100%;
   }
