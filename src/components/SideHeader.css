@@ -211,7 +211,7 @@
 }
 
 .menu-link {
-  color: rgba(255, 255, 255, 0.68);
+  color: rgba(255, 255, 255, 0.42);
   text-decoration: none;
   font-size: 48px;
   font-weight: bold;
@@ -221,15 +221,15 @@
 
 .menu-link-char {
   display: inline-block;
-  color: rgba(255, 255, 255, 0.68);
-  transition: color 0.28s ease;
+  color: rgba(255, 255, 255, 0.42);
+  transition: color 0.12s linear;
   transition-delay: 0ms;
 }
 
 .menu-link:hover .menu-link-char,
 .menu-link:focus-visible .menu-link-char {
   color: #ffffff;
-  transition-delay: calc(var(--i) * 30ms);
+  transition-delay: calc(var(--i) * 65ms);
 }
 
 /* ========== BOTÃO MOBILE ========== */
@@ -249,7 +249,7 @@
   .mobile-menu-toggle {
     display: flex;
     position: fixed;
-    top: 12px;
+    top: calc(var(--mobile-top-offset, 0px) + env(safe-area-inset-top, 0px) + 8px);
     right: 12px;
     background: none;        /* sem fundo */
     border: none;            /* sem borda */
@@ -294,9 +294,21 @@
 
   /* Reduz tamanho dos links para caber em telas pequenas */
   .menu-link {
+    color: #ffffff;
     font-size: 36px;
     display: block;
     margin: 10px 0;
+  }
+
+  .menu-link-char {
+    color: #ffffff;
+    transition: none;
+  }
+
+  .menu-link:hover .menu-link-char,
+  .menu-link:focus-visible .menu-link-char {
+    color: #ffffff;
+    transition-delay: 0ms;
   }
 
   /* Container dos ícones sociais dentro do menu (horizontal) - garantido visível */

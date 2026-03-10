@@ -49,8 +49,8 @@
 /* Overlay e título centralizado */
 .movie-title {
   position: absolute;
-  inset: 0; /* Equivalente a top:0; right:0; bottom:0; left:0; */
-  background: rgba(0, 0, 0, 0.6); /* Overlay com transparência */
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
   color: white;
   display: flex;
   align-items: center;
@@ -59,7 +59,7 @@
   padding: 10px;
   font-size: 18px;
   font-weight: bold;
-  opacity: 0; /* Escondido por padrão (opcional) */
+  opacity: 0;
   transition: opacity 0.3s ease;
 }
 
@@ -68,7 +68,6 @@
   opacity: 1;
 }
 
-/* Se preferir overlay sempre visível, troque .movie-title para opacity: 1; */
 
 /* Ajustes para mobile */
 @media (max-width: 768px) {
@@ -76,13 +75,30 @@
     gap: 20px;
     padding: 0 20px;
   }
+
   .movie-item {
     width: calc((100% - 15px) / 2);
   }
 
+  .movie-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.48) 28%, rgba(0, 0, 0, 0) 62%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
   .movie-title {
+    inset: auto 0 0 0;
+    background: transparent;
+    justify-content: center;
+    text-align: center;
+    padding: 12px 14px;
     font-size: 16px;
-    opacity: 1; /* Para garantir visibilidade em telas pequenas (ajuste conforme desejado) */
+    line-height: 1.25;
+    opacity: 1;
+    z-index: 2;
   }
 }
 

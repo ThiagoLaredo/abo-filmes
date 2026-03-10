@@ -12,7 +12,7 @@
 
 @media (max-width: 768px) {
   .site-logo {
-    top: 12px;
+    top: calc(var(--mobile-top-offset, 0px) + env(safe-area-inset-top, 0px) + 8px);
     left: 12px;
     font-size: clamp(18px, 5.4vw, 24px);
     padding: 8px 12px;

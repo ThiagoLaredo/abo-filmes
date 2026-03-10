@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -9,7 +9,6 @@ import './MovieGrid.css';
 gsap.registerPlugin(ScrollTrigger);
 
 const MovieGrid = () => {
-  const [hoveredId, setHoveredId] = useState(null);
   const gridRef = useRef(null);
   const itemsRef = useRef([]); // Array para armazenar as referências de cada item
 
@@ -54,8 +53,6 @@ const MovieGrid = () => {
             key={movie.id}
             className="movie-item"
             ref={(el) => (itemsRef.current[index] = el)} // Atribui a referência
-            onMouseEnter={() => setHoveredId(movie.id)}
-            onMouseLeave={() => setHoveredId(null)}
           >
             <Link to={`/filme/${movie.id}`}>
               <picture>
@@ -75,9 +72,7 @@ const MovieGrid = () => {
                   loading="lazy"
                 />
               </picture>
-              {hoveredId === movie.id && (
-                <div className="movie-title">{movie.title}</div>
-              )}
+              <div className="movie-title">{movie.title}</div>
             </Link>
           </div>
         );

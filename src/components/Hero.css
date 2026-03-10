@@ -145,6 +145,11 @@
 /* Responsividade */
 @media (max-width: 768px) {
 
+  .hero {
+    height: 78vh;
+    min-height: 520px;
+  }
+
   .hero-play-badge {
     width: 180px;
     height: 180px;
@@ -153,6 +158,7 @@
   .hero-circular-text {
     font-size: 12px;
     letter-spacing: 3px;
+    animation-play-state: running;
   }
 
   .hero-play-core {

@@ -8,6 +8,7 @@ const SideHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [isMobileScrolled, setIsMobileScrolled] = useState(false);
+  const [mobileTopOffset, setMobileTopOffset] = useState(0);
   const borderRef = useRef(null);
   const menuRef = useRef(null);
   const curtainRef = useRef(null);
@@ -16,18 +17,24 @@ const SideHeader = () => {
   const isAnimatingRef = useRef(false);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const updateViewportState = () => {
       const isMobile = window.matchMedia('(max-width: 768px)').matches;
       setIsMobileScrolled(isMobile && window.scrollY > 8);
+      const topOffset = isMobile ? window.visualViewport?.offsetTop ?? 0 : 0;
+      setMobileTopOffset(topOffset);
     };
 
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll);
+    updateViewportState();
+    window.addEventListener('scroll', updateViewportState, { passive: true });
+    window.addEventListener('resize', updateViewportState);
+    window.visualViewport?.addEventListener('resize', updateViewportState);
+    window.visualViewport?.addEventListener('scroll', updateViewportState);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
+      window.removeEventListener('scroll', updateViewportState);
+      window.removeEventListener('resize', updateViewportState);
+      window.visualViewport?.removeEventListener('resize', updateViewportState);
+      window.visualViewport?.removeEventListener('scroll', updateViewportState);
     };
   }, []);
 
@@ -192,7 +199,7 @@ const SideHeader = () => {
       </div>
 
       {/* Botão flutuante para mobile - aparece apenas no mobile */}
-      <button className={`mobile-menu-toggle ${isMobileScrolled ? 'is-mobile-scrolled' : ''}`} onClick={toggleMenu} aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}>
+      <button className={`mobile-menu-toggle ${isMobileScrolled ? 'is-mobile-scrolled' : ''}`} style={{ '--mobile-top-offset': `${mobileTopOffset}px` }} onClick={toggleMenu} aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}>
         <MenuIcon />
       </button>
 

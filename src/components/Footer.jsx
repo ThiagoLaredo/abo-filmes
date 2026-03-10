@@ -10,7 +10,6 @@ export default function Footer() {
         <div className="footer-col footer-col-logo">Abó Filmes</div>
 
         <nav className="footer-col footer-menu" aria-label="Menu do rodapé">
-          <Link to="/">Início</Link>
           <a href="/#filmes">Filmes</a>
           <Link to="/sobre">Sobre</Link>
           <Link to="/contato">Contato</Link>

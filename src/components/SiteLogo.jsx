@@ -4,20 +4,27 @@ import './SiteLogo.css';
 
 const SiteLogo = () => {
   const [isMobileScrolled, setIsMobileScrolled] = useState(false);
+  const [mobileTopOffset, setMobileTopOffset] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const updateViewportState = () => {
       const isMobile = window.matchMedia('(max-width: 768px)').matches;
       setIsMobileScrolled(isMobile && window.scrollY > 8);
+      const topOffset = isMobile ? window.visualViewport?.offsetTop ?? 0 : 0;
+      setMobileTopOffset(topOffset);
     };
 
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll);
+    updateViewportState();
+    window.addEventListener('scroll', updateViewportState, { passive: true });
+    window.addEventListener('resize', updateViewportState);
+    window.visualViewport?.addEventListener('resize', updateViewportState);
+    window.visualViewport?.addEventListener('scroll', updateViewportState);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
+      window.removeEventListener('scroll', updateViewportState);
+      window.removeEventListener('resize', updateViewportState);
+      window.visualViewport?.removeEventListener('resize', updateViewportState);
+      window.visualViewport?.removeEventListener('scroll', updateViewportState);
     };
   }, []);
 
@@ -25,6 +32,7 @@ const SiteLogo = () => {
     <Link
       to="/"
       className={`site-logo ${isMobileScrolled ? 'is-mobile-scrolled' : ''}`}
+      style={{ '--mobile-top-offset': `${mobileTopOffset}px` }}
       aria-label="Ir para a página inicial"
     >
       Abó Filmes
