@@ -5,9 +5,42 @@
   z-index: 1002;
   color: #ffffff;
   text-decoration: none;
+  text-transform: uppercase;
   font-size: clamp(20px, 2.6vw, 30px);
-  font-weight: 700;
+  font-weight: 100;
   letter-spacing: 0.03em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.42ch;
+  background-color: transparent;
+  border-radius: 0;
+  width: auto;
+  height: auto;
+  transition: color 0.1s linear;
+}
+
+.site-logo strong {
+  font-weight: 800;
+}
+
+.site-logo-separator {
+  font-weight: 100;
+}
+
+.site-logo.is-scrolled {
+  color: #000000;
+  font-weight: 800;
+  background-color: #ffffff;
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  letter-spacing: 0.01em;
+  font-size: 22px;
+  line-height: 1;
+  padding: 0;
+  justify-content: center;
+  gap: 0;
 }
 
 @media (max-width: 768px) {
@@ -15,13 +48,13 @@
     top: calc(var(--mobile-top-offset, 0px) + env(safe-area-inset-top, 0px) + 8px);
     left: 12px;
     font-size: clamp(18px, 5.4vw, 24px);
-    padding: 8px 12px;
-    border-radius: 12px;
+    padding: 0;
     background-color: transparent;
-    transition: background-color 0.25s ease;
   }
 
-  .site-logo.is-mobile-scrolled {
-    background-color: rgba(0, 0, 0, 0.9);
+  .site-logo.is-scrolled {
+    width: 56px;
+    height: 56px;
+    font-size: 20px;
   }
 }

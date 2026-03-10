@@ -41,7 +41,7 @@
 .about-text {
   font-size: clamp(17px, 1.8vw, 21px);
   line-height: 1.65;
-  color: #b8b8b8;
+  color: #ffffff;
 }
 
 .about-highlight {

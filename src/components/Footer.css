@@ -16,9 +16,10 @@
 }
 
 .footer-col-logo {
-  color: #b8b8b8;
-  font-size: clamp(18px, 2vw, 24px);
-  font-weight: 700;
+  color: #ffffff;
+  font-size: clamp(16px, 1.8vw, 20px);
+  font-weight: 100;
+  text-transform: uppercase;
 }
 
 .footer-menu {

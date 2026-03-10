@@ -106,6 +106,7 @@
 
 .contact-link {
   color: white;
+  font-family: 'Montserrat', sans-serif;
   text-decoration: none;
   font-size: 11px;
   font-weight: 600;
@@ -211,7 +212,7 @@
 }
 
 .menu-link {
-  color: rgba(255, 255, 255, 0.42);
+  color: #ffffff;
   text-decoration: none;
   font-size: 48px;
   font-weight: bold;
@@ -221,15 +222,25 @@
 
 .menu-link-char {
   display: inline-block;
-  color: rgba(255, 255, 255, 0.42);
-  transition: color 0.12s linear;
-  transition-delay: 0ms;
+  color: #ffffff;
 }
 
 .menu-link:hover .menu-link-char,
 .menu-link:focus-visible .menu-link-char {
-  color: #ffffff;
-  transition-delay: calc(var(--i) * 65ms);
+  animation: menuLetterCurtain 0.42s linear;
+  animation-delay: calc(var(--i) * 65ms);
+}
+
+@keyframes menuLetterCurtain {
+  0% {
+    color: #ffffff;
+  }
+  45% {
+    color: #000000;
+  }
+  100% {
+    color: #ffffff;
+  }
 }
 
 /* ========== BOTÃO MOBILE ========== */
@@ -302,13 +313,13 @@
 
   .menu-link-char {
     color: #ffffff;
-    transition: none;
+    animation: none !important;
   }
 
   .menu-link:hover .menu-link-char,
   .menu-link:focus-visible .menu-link-char {
     color: #ffffff;
-    transition-delay: 0ms;
+    animation: none !important;
   }
 
   /* Container dos ícones sociais dentro do menu (horizontal) - garantido visível */

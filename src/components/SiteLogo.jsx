@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import './SiteLogo.css';
 
 const SiteLogo = () => {
-  const [isMobileScrolled, setIsMobileScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileTopOffset, setMobileTopOffset] = useState(0);
 
   useEffect(() => {
     const updateViewportState = () => {
       const isMobile = window.matchMedia('(max-width: 768px)').matches;
-      setIsMobileScrolled(isMobile && window.scrollY > 8);
+      setIsScrolled(window.scrollY > 8);
       const topOffset = isMobile ? window.visualViewport?.offsetTop ?? 0 : 0;
       setMobileTopOffset(topOffset);
     };
@@ -31,11 +31,18 @@ const SiteLogo = () => {
   return (
     <Link
       to="/"
-      className={`site-logo ${isMobileScrolled ? 'is-mobile-scrolled' : ''}`}
+      className={`site-logo ${isScrolled ? 'is-scrolled' : ''}`}
       style={{ '--mobile-top-offset': `${mobileTopOffset}px` }}
       aria-label="Ir para a página inicial"
     >
-      Abó Filmes
+      {isScrolled ? (
+        'ABÓ'
+      ) : (
+        <>
+          <strong>Abó</strong>
+          <span className="site-logo-separator">Filmes</span>
+        </>
+      )}
     </Link>
   );
 };

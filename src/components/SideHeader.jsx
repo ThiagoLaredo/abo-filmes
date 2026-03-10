@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaInstagram, FaLinkedin, FaVimeo } from 'react-icons/fa';
 import { gsap } from 'gsap';
 import './SideHeader.css';
 
 const SideHeader = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [isMobileScrolled, setIsMobileScrolled] = useState(false);
@@ -47,7 +49,7 @@ const SideHeader = () => {
     setIsMenuOpen(true);
   };
 
-  const closeMenu = () => {
+  const closeMenu = (onAfterClose) => {
     if (isAnimatingRef.current || !isMenuVisible || !menuRef.current) {
       return;
     }
@@ -61,6 +63,9 @@ const SideHeader = () => {
       onComplete: () => {
         setIsMenuVisible(false);
         isAnimatingRef.current = false;
+        if (onAfterClose) {
+          onAfterClose();
+        }
       },
     });
 
@@ -156,6 +161,21 @@ const SideHeader = () => {
     }
   }, [isMenuOpen, isMenuVisible]);
 
+  useEffect(() => {
+    if (isMenuVisible) {
+      document.body.style.overflowY = 'hidden';
+      document.documentElement.style.overflowY = 'hidden';
+    } else {
+      document.body.style.overflowY = '';
+      document.documentElement.style.overflowY = '';
+    }
+
+    return () => {
+      document.body.style.overflowY = '';
+      document.documentElement.style.overflowY = '';
+    };
+  }, [isMenuVisible]);
+
   const MenuIcon = () => (
     <span className={`menu-icon ${isMenuOpen ? 'is-open' : ''}`} aria-hidden="true">
       <span className="menu-line menu-line-1"></span>
@@ -174,6 +194,25 @@ const SideHeader = () => {
         {char === ' ' ? '\u00A0' : char}
       </span>
     ));
+  };
+
+  const handleFilmesClick = (event) => {
+    event.preventDefault();
+
+    const goToFilmes = () => {
+      if (location.pathname !== '/') {
+        navigate('/#filmes');
+        return;
+      }
+
+      const targetElement = document.getElementById('filmes');
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        window.history.replaceState(null, '', '/#filmes');
+      }
+    };
+
+    closeMenu(goToFilmes);
   };
 
   return (
@@ -219,7 +258,7 @@ const SideHeader = () => {
           </div>
           <div className="menu-content" onClick={(e) => e.stopPropagation()}>
             <Link to="/sobre" className="menu-link" onClick={closeMenu} ref={(el) => (menuLinksRef.current[0] = el)}>{renderMenuLabel('SOBRE')}</Link>
-            <a href="/#filmes" className="menu-link" onClick={closeMenu} ref={(el) => (menuLinksRef.current[1] = el)}>{renderMenuLabel('FILMES')}</a>
+            <a href="/#filmes" className="menu-link" onClick={handleFilmesClick} ref={(el) => (menuLinksRef.current[1] = el)}>{renderMenuLabel('FILMES')}</a>
             <Link to="/contato" className="menu-link" onClick={closeMenu} ref={(el) => (menuLinksRef.current[2] = el)}>{renderMenuLabel('CONTATO')}</Link>
             <Link to="/labcriativo" className="menu-link" onClick={closeMenu} ref={(el) => (menuLinksRef.current[3] = el)}>{renderMenuLabel('LAB CRIATIVO')}</Link>
 

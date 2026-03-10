@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-inner">
-        <div className="footer-col footer-col-logo">Abó Filmes</div>
+        <div className="footer-col footer-col-logo"><strong>Abó</strong> Filmes</div>
 
         <nav className="footer-col footer-menu" aria-label="Menu do rodapé">
           <a href="/#filmes">Filmes</a>

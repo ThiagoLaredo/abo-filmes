@@ -1,5 +1,7 @@
 import "./App.css";
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Hero from "./components/Hero";
 import MovieGrid from "./components/MovieGrid";
 import Brands from "./components/Brands";
@@ -11,9 +13,36 @@ import Footer from "./components/Footer";
 import SideHeader from "./components/SideHeader";
 import SiteLogo from "./components/SiteLogo";
 
+function ScrollToHash() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!location.hash) {
+      return;
+    }
+
+    const targetId = location.hash.replace('#', '');
+
+    const scrollToTarget = () => {
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+
+    requestAnimationFrame(scrollToTarget);
+    const fallbackTimeout = setTimeout(scrollToTarget, 350);
+
+    return () => clearTimeout(fallbackTimeout);
+  }, [location.pathname, location.hash]);
+
+  return null;
+}
+
 function App() {
   return (
     <Router>
+      <ScrollToHash />
       <SiteLogo />
       <SideHeader />
       <Routes>
