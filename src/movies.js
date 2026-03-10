@@ -2,19 +2,19 @@ export const movies = [
   {
     id: 1,
     title: "Hero Tegra + Lissoni 2024",
-    image: "movies/tegra-lissoni-2024.webp",
+    image: "movies/hero-tegra+lissoni-2024.webp",
     vimeoId: "1168468796" 
   },
   {
     id: 2,
     title: "Teaser Tegra + Lissoni 2024",
-    image: "movies/teaser-tegra-lissoni-2024.webp",
+    image: "movies/teaser-tegra+lissoni-2024.webp",
     vimeoId: "76979872"
   },
   {
     id: 3,
     title: "Capitolo Tegra Klabin",
-    image: "movies/capitolo-tegra-klabin.webp",
+    image: "movies/capitolio-tegra-klabin.webp",
     vimeoId: "76979873"
   },
   {
@@ -36,25 +36,25 @@ export const movies = [
     vimeoId: "76979876"
   },
     {
-    id: 6,
+    id: 7,
     title: "Teaser Websérie Tegra + Lissoni",
-    image: "movies/teaser-websérie-tegra-lissoni.webp",
+    image: "movies/teaser-webserie-tegra+lissoni.webp",
     vimeoId: "76979876"
   },
     {
-    id: 6,
+    id: 8,
     title: "Tegra + Lissoni 2025",
-    image: "movies/tegra-lissoni-2025.webp",
+    image: "movies/tegra+lissoni-2025.webp",
     vimeoId: "76979876"
   },
     {
-    id: 6,
+    id: 9,
     title: "Tegra Pode Escolher 2025",
-    image: "movies/tgra-pode-escolher-2025.webp",
+    image: "movies/tegra-pode-escolher-2025.webp",
     vimeoId: "76979876"
   },
       {
-    id: 6,
+    id: 10,
     title: "Tegra SP Open 2025",
     image: "movies/tegra-sp-open-2025.webp",
     vimeoId: "76979876"

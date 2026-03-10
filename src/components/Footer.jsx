@@ -1,35 +1,27 @@
-// src/components/Footer.jsx
-import React, { useEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React from "react";
+import { Link } from "react-router-dom";
+import { FaInstagram, FaLinkedin, FaVimeo } from 'react-icons/fa';
 import "./Footer.css";
 
 export default function Footer() {
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.fromTo(
-      ".footer p",
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".footer",
-          start: "top 90%", // começa quando o footer estiver 80% visível
-          toggleActions: "play none none none",
-        },
-      }
-    );
-  }, []);
-
   return (
     <footer className="footer">
-      <p>
-        © {new Date().getFullYear()} Abó Filmes — Todos os direitos reservados.
-      </p>
+      <div className="footer-inner">
+        <div className="footer-col footer-col-logo">Abó Filmes</div>
+
+        <nav className="footer-col footer-menu" aria-label="Menu do rodapé">
+          <Link to="/">Início</Link>
+          <Link to="/sobre">Sobre</Link>
+          <Link to="/contato">Contato</Link>
+          <Link to="/manifesto">Manifesto</Link>
+        </nav>
+
+        <div className="footer-col footer-socials">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><FaInstagram /></a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedin /></a>
+          <a href="https://vimeo.com" target="_blank" rel="noopener noreferrer" aria-label="Vimeo"><FaVimeo /></a>
+        </div>
+      </div>
     </footer>
   );
 }

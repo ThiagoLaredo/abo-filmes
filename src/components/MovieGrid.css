@@ -10,10 +10,29 @@
 
 /* Item do filme – tamanho uniforme */
 .movie-item {
+  opacity: 0;
+  transform: translateY(50px);
+  /* mantenha as outras propriedades que já existem */
   position: relative;
   overflow: hidden;
-  aspect-ratio: 3 / 2; /* Proporção fixa (largura 2, altura 3) – ajuste conforme preferir */
+  aspect-ratio: 3 / 2;
 }
+
+.movie-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.movie-item {
+  width: calc((100% - 40px) / 3); /* 2 gaps de 20px entre 3 itens */
+  aspect-ratio: 3/2;
+}
+
 
 .movie-item img {
   width: 100%;
@@ -54,9 +73,11 @@
 /* Ajustes para mobile */
 @media (max-width: 768px) {
   .movie-grid {
-    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     padding: 15px;
+  }
+  .movie-item {
+    width: calc((100% - 15px) / 2);
   }
 
   .movie-title {
@@ -67,9 +88,11 @@
 
 @media (max-width: 480px) {
   .movie-grid {
-    grid-template-columns: 1fr; /* Uma coluna em smartphones pequenos */
     gap: 12px;
     padding: 12px;
+  }
+  .movie-item {
+    width: 100%;
   }
 
   .movie-title {

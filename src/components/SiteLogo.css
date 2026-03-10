@@ -1,0 +1,19 @@
+.site-logo {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 1002;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: clamp(20px, 2.6vw, 30px);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 768px) {
+  .site-logo {
+    top: 14px;
+    left: 14px;
+    font-size: clamp(18px, 5.4vw, 24px);
+  }
+}

@@ -29,20 +29,79 @@
   background: none;
   border: none;
   color: white;
-  font-size: 24px;
   cursor: pointer;
   margin-bottom: 20px;
   outline: none;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .menu-toggle:focus {
   outline: none;
 }
 
+.menu-icon {
+  width: 34px;
+  height: 26px;
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.menu-line {
+  display: block;
+  height: 2px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transform-origin: center center;
+  transition: transform 0.35s ease, opacity 0.25s ease, width 0.35s ease;
+}
+
+.menu-line-1 {
+  width: 34px;
+}
+
+.menu-line-2 {
+  width: 29px;
+}
+
+.menu-line-3 {
+  width: 24px;
+}
+
+.menu-icon.is-open {
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-icon.is-open .menu-line {
+  width: 34px;
+  position: absolute;
+}
+
+.menu-icon.is-open .menu-line-1 {
+  transform: rotate(45deg);
+}
+
+.menu-icon.is-open .menu-line-2 {
+  opacity: 0;
+  transform: scaleX(0.2);
+}
+
+.menu-icon.is-open .menu-line-3 {
+  transform: rotate(-45deg);
+}
+
 .contact-link {
   color: white;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.19em;
   margin: 20px 0;
   position: relative;
   transform: rotate(90deg);
@@ -67,7 +126,7 @@
 .social-icons {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
 }
 
 .social-icons a {
@@ -101,21 +160,47 @@
   align-items: center;
   justify-content: flex-start;
   padding-left: 50px;
+  overflow: hidden;
+}
+
+.menu-close-curtain {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.95) 55%, rgba(0, 0, 0, 0.55) 100%);
+  transform: scaleY(0);
+  transform-origin: top center;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .menu-content {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
 .menu-link {
-  color: white;
+  color: rgba(255, 255, 255, 0.68);
   text-decoration: none;
   font-size: 48px;
   font-weight: bold;
   opacity: 0;
   transform-origin: top center;
+}
+
+.menu-link-char {
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.68);
+  transition: color 0.28s ease;
+  transition-delay: 0ms;
+}
+
+.menu-link:hover .menu-link-char,
+.menu-link:focus-visible .menu-link-char {
+  color: #ffffff;
+  transition-delay: calc(var(--i) * 30ms);
 }
 
 /* ========== BOTÃO MOBILE ========== */
@@ -140,7 +225,6 @@
     background: none;        /* sem fundo */
     border: none;            /* sem borda */
     color: white;
-    font-size: 30px;         /* tamanho do ícone (se for ícone de fonte; para SVG, controlamos pelo componente) */
     cursor: pointer;
     z-index: 1001;
     padding: 12px;           /* área de clique confortável */
