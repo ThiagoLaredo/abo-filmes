@@ -37,7 +37,7 @@
 @media screen and (max-width: 768px) {
   .movie-page {
     padding: 120px 16px 80px;
-    min-height: auto; 
+    min-height: 77vh; 
   }
 
   .movie-page h1 {
