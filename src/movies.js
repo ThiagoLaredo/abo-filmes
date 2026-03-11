@@ -9,7 +9,7 @@ export const movies = [
     id: 2,
     title: "Teaser Tegra + Lissoni 2024",
     image: "movies/teaser-tegra+lissoni-2024.webp",
-    vimeoId: "76979872"
+    vimeoId: "1172721770"
   },
   {
     id: 3,
@@ -27,13 +27,13 @@ export const movies = [
     id: 5,
     title: "Peninsula Gran Thai",
     image: "movies/peninsula-gran-thai.webp",
-    vimeoId: "76979875"
+    vimeoId: "1160332967"
   },
   {
     id: 6,
     title: "Peninsula Singular",
     image: "movies/peninsula-singular.webp",
-    vimeoId: "76979876"
+    vimeoId: "1160333043"
   },
     {
     id: 7,

@@ -51,24 +51,28 @@ function ScrollToHash() {
 function App() {
   return (
     <Router>
-      <ScrollToHash />
-      <SiteLogo />
-      <SideHeader />
-      <Routes>
-        <Route path="/" element={
-          <>
-            <Hero />
-            <MovieGrid />
-            <Brands />
-          </>
-        } />
-        <Route path="/sobre" element={<AboutPage />} />
-        <Route path="/manifesto" element={<AboutPage />} />
-        <Route path="/contato" element={<ContactPage />} />
-        <Route path="/labcriativo" element={<LabCriativoPage />} />
-        <Route path="/filme/:id" element={<MoviePage />} />
-      </Routes>
-      <Footer />
+      <div className="app-shell">
+        <ScrollToHash />
+        <SiteLogo />
+        <SideHeader />
+        <main className="app-content">
+          <Routes>
+            <Route path="/" element={
+              <>
+                <Hero />
+                <MovieGrid />
+                <Brands />
+              </>
+            } />
+            <Route path="/sobre" element={<AboutPage />} />
+            <Route path="/manifesto" element={<AboutPage />} />
+            <Route path="/contato" element={<ContactPage />} />
+            <Route path="/labcriativo" element={<LabCriativoPage />} />
+            <Route path="/filme/:id" element={<MoviePage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </Router>
   );
 }

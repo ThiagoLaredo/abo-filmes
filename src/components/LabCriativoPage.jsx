@@ -38,7 +38,7 @@ const LabCriativoPage = () => {
       <div className="lab-page-curtain" ref={curtainRef}></div>
 
       <section className="lab-container" ref={contentRef}>
-        <h1 className="lab-title">Lab Criativo</h1>
+        <h1 className="lab-title">Still</h1>
         <p className="lab-text">
           Um espaço para experimentar formatos, linguagem e novas narrativas que ampliam o potencial das marcas.
         </p>

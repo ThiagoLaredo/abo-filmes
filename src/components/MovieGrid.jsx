@@ -13,9 +13,14 @@ const MovieGrid = () => {
   const itemsRef = useRef([]); // Array para armazenar as referências de cada item
 
   useEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    
     // Cria uma animação para cada item do grid
-    itemsRef.current.forEach((item) => {
+    itemsRef.current.forEach((item, index) => {
       if (!item) return; // segurança
+
+      // Atrasa o primeiro item no mobile para sincronizar com Hero
+      const delay = isMobile && index === 0 ? 1.2 : 0;
 
       gsap.fromTo(
         item,
@@ -28,6 +33,7 @@ const MovieGrid = () => {
           y: 0,
           duration: 0.8,
           ease: 'power2.out',
+          delay,
           scrollTrigger: {
             trigger: item,
             start: 'top 80%', // Quando o topo do item estiver a 80% da viewport

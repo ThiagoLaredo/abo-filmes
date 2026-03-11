@@ -16,11 +16,11 @@ export default function Footer() {
           <Link to="/manifesto">Manifesto</Link>
         </nav>
 
-        <div className="footer-col footer-socials">
+        {/* <div className="footer-col footer-socials">
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><FaInstagram /></a>
           <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedin /></a>
           <a href="https://vimeo.com" target="_blank" rel="noopener noreferrer" aria-label="Vimeo"><FaVimeo /></a>
-        </div>
+        </div> */}
       </div>
     </footer>
   );

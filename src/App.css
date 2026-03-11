@@ -13,3 +13,13 @@ body, html, #root {
   width: 100%;
   background-color: #000;
 }
+
+.app-shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1 0 auto;
+}
