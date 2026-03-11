@@ -17,23 +17,32 @@ function ScrollToHash() {
   const location = useLocation();
 
   useEffect(() => {
-    if (!location.hash) {
-      return;
+    // Se tem hash, scroll para o elemento
+    if (location.hash) {
+      const targetId = location.hash.replace('#', '');
+
+      const scrollToTarget = () => {
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      };
+
+      requestAnimationFrame(scrollToTarget);
+      const fallbackTimeout = setTimeout(scrollToTarget, 350);
+
+      return () => clearTimeout(fallbackTimeout);
+    } else {
+      // Se não tem hash, scroll para o topo
+      const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+
+      requestAnimationFrame(scrollToTop);
+      const fallbackTimeout = setTimeout(scrollToTop, 100);
+
+      return () => clearTimeout(fallbackTimeout);
     }
-
-    const targetId = location.hash.replace('#', '');
-
-    const scrollToTarget = () => {
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    };
-
-    requestAnimationFrame(scrollToTarget);
-    const fallbackTimeout = setTimeout(scrollToTarget, 350);
-
-    return () => clearTimeout(fallbackTimeout);
   }, [location.pathname, location.hash]);
 
   return null;

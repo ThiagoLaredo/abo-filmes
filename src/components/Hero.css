@@ -57,7 +57,7 @@
   width: 100%;
   height: 100%;
   fill: #ffffff;
-  letter-spacing: 3px;
+  letter-spacing: 3.2px;
   font-size: 12px;
   text-transform: uppercase;
   animation: heroRotateText 7.5s linear infinite;
@@ -150,6 +150,15 @@
     min-height: 520px;
   }
 
+    .hero {
+    height: auto;
+    min-height: 380px;
+  }
+
+  .hero-content {
+    margin-top: 100px;
+  }
+
   .hero-play-badge {
     width: 180px;
     height: 180px;
@@ -173,6 +182,7 @@
 
   .scroll-indicator {
     bottom: 100px;  /* aumenta o bottom para afastar do texto */
+    display: none;
   }
 
 }

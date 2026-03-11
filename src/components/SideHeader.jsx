@@ -200,16 +200,7 @@ const SideHeader = () => {
     event.preventDefault();
 
     const goToFilmes = () => {
-      if (location.pathname !== '/') {
-        navigate('/#filmes');
-        return;
-      }
-
-      const targetElement = document.getElementById('filmes');
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        window.history.replaceState(null, '', '/#filmes');
-      }
+      navigate('/#filmes');
     };
 
     closeMenu(goToFilmes);

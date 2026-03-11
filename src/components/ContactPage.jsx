@@ -29,6 +29,7 @@ const ContactPage = () => {
       nome: '',
       email: '',
       empresa: '',
+      telefone: '',
       mensagem: '',
     });
   };
@@ -71,44 +72,55 @@ const ContactPage = () => {
         <form className="contact-form" onSubmit={handleSubmit}>
           <div className="contact-grid">
             <label className="contact-field">
-              <span>Nome</span>
               <input
                 type="text"
                 name="nome"
                 value={formData.nome}
                 onChange={handleChange}
+                placeholder="Nome"
                 required
               />
             </label>
 
             <label className="contact-field">
-              <span>Email</span>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                placeholder="E-mail"
                 required
               />
             </label>
 
+                        <label className="contact-field">
+              <input
+                type="text"
+                name="telefone"
+                value={formData.telefone}
+                onChange={handleChange}
+                placeholder="Celular"
+              />
+            </label>
+
             <label className="contact-field">
-              <span>Empresa</span>
               <input
                 type="text"
                 name="empresa"
                 value={formData.empresa}
                 onChange={handleChange}
+                placeholder="Empresa"
               />
             </label>
 
+
             <label className="contact-field contact-field-full">
-              <span>Mensagem</span>
               <textarea
                 name="mensagem"
                 rows="6"
                 value={formData.mensagem}
                 onChange={handleChange}
+                placeholder="Mensagem"
                 required
               />
             </label>
