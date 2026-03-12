@@ -69,6 +69,7 @@ function App() {
             <Route path="/contato" element={<ContactPage />} />
             <Route path="/labcriativo" element={<LabCriativoPage />} />
             <Route path="/filme/:id" element={<MoviePage />} />
+            <Route path="/filmes/:slug" element={<MoviePage />} />
           </Routes>
         </main>
         <Footer />

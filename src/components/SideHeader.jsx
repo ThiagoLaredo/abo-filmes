@@ -81,10 +81,10 @@ const SideHeader = () => {
         decorDotsRef.current,
         {
           opacity: 0,
-          y: 16,
-          duration: 0.18,
-          stagger: { each: 0.008, from: 'end' },
-          ease: 'power1.in',
+          scale: 0.94,
+          duration: 0.24,
+          stagger: { each: 0.02, from: 'end' },
+          ease: 'power2.inOut',
         },
         '-=0.14'
       )
@@ -124,7 +124,7 @@ const SideHeader = () => {
       gsap.fromTo(borderRef.current, { height: 0 }, { height: '100%', duration: 0.5, ease: 'power2.out' });
       gsap.set(menuRef.current, { x: '-100%', backgroundColor: '#ffffff' });
       gsap.set(curtainRef.current, { scaleY: 0, transformOrigin: 'top center' });
-      gsap.set(decorDotsRef.current, { opacity: 0, y: -26 });
+      gsap.set(decorDotsRef.current, { opacity: 0, scale: 0.94 });
       gsap.set(menuLinksRef.current, { opacity: 0, y: 34 });
 
       const openTl = gsap.timeline({
@@ -140,9 +140,9 @@ const SideHeader = () => {
           decorDotsRef.current,
           {
             opacity: 1,
-            y: 0,
-            duration: 0.22,
-            stagger: 0.012,
+            scale: 1,
+            duration: 0.36,
+            stagger: 0.025,
             ease: 'power2.out',
           },
           '-=0.12'
@@ -238,14 +238,11 @@ const SideHeader = () => {
         <div className="fullscreen-menu" ref={menuRef} onClick={closeMenu}>
           <div className="menu-close-curtain" ref={curtainRef}></div>
           <div className="menu-decor" aria-hidden="true">
-            {Array.from({ length: 40 }).map((_, index) => (
-              <span
-                key={`decor-dot-${index}`}
-                className="menu-decor-dot"
-                ref={(el) => (decorDotsRef.current[index] = el)}
-                style={{ '--dot-col': index % 4, '--dot-row': Math.floor(index / 4) }}
-              ></span>
-            ))}
+            <span className="menu-flare menu-flare-core" ref={(el) => (decorDotsRef.current[0] = el)}></span>
+            <span className="menu-flare menu-flare-ring" ref={(el) => (decorDotsRef.current[1] = el)}></span>
+            <span className="menu-flare menu-flare-ghost menu-flare-ghost-one" ref={(el) => (decorDotsRef.current[2] = el)}></span>
+            <span className="menu-flare menu-flare-ghost menu-flare-ghost-two" ref={(el) => (decorDotsRef.current[3] = el)}></span>
+            <span className="menu-flare menu-flare-streak" ref={(el) => (decorDotsRef.current[4] = el)}></span>
           </div>
           <div className="menu-content" onClick={(e) => e.stopPropagation()}>
             <Link to="/sobre" className="menu-link" onClick={closeMenu} ref={(el) => (menuLinksRef.current[0] = el)}>{renderMenuLabel('SOBRE')}</Link>

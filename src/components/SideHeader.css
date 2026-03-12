@@ -193,23 +193,72 @@
 
 .menu-decor {
   position: absolute;
-  left: 24px;
+  left: 28px;
   top: 50%;
   transform: translateY(-50%);
-  width: 96px;
-  height: 188px;
+  width: 200px;
+  height: 240px;
   z-index: 2;
   pointer-events: none;
 }
 
-.menu-decor-dot {
+.menu-flare {
   position: absolute;
-  width: 7px;
-  height: 7px;
+  display: block;
   border-radius: 999px;
-  background-color: rgba(255, 255, 255, 0.56);
-  left: calc(12px + (var(--dot-col) * 22px));
-  top: calc(10px + (var(--dot-row) * 16px));
+  mix-blend-mode: screen;
+  transform-origin: center center;
+}
+
+.menu-flare-core {
+  left: 10px;
+  top: 84px;
+  width: 76px;
+  height: 76px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.96) 0%, rgba(255, 245, 214, 0.62) 26%, rgba(255, 225, 140, 0.18) 52%, rgba(255, 225, 140, 0) 78%);
+  filter: blur(1px);
+  animation: menuFlarePulse 4.8s ease-in-out infinite;
+}
+
+.menu-flare-ring {
+  left: -10px;
+  top: 62px;
+  width: 122px;
+  height: 122px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 0 30px rgba(255, 241, 190, 0.12), inset 0 0 22px rgba(255, 255, 255, 0.08);
+  animation: menuFlareBreath 5.4s ease-in-out infinite;
+}
+
+.menu-flare-ghost-one {
+  left: 112px;
+  top: 100px;
+  width: 26px;
+  height: 26px;
+  background: radial-gradient(circle, rgba(173, 214, 255, 0.5) 0%, rgba(173, 214, 255, 0.12) 55%, rgba(173, 214, 255, 0) 75%);
+  filter: blur(0.5px);
+  animation: menuFlareDrift 6.2s ease-in-out infinite;
+}
+
+.menu-flare-ghost-two {
+  left: 148px;
+  top: 128px;
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle, rgba(255, 210, 140, 0.55) 0%, rgba(255, 210, 140, 0.12) 58%, rgba(255, 210, 140, 0) 80%);
+  animation: menuFlareDrift 7.2s ease-in-out infinite reverse;
+}
+
+.menu-flare-streak {
+  left: 0;
+  top: 118px;
+  width: 188px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 245, 214, 0.12) 18%, rgba(255, 255, 255, 0.82) 36%, rgba(255, 245, 214, 0.18) 52%, rgba(255, 255, 255, 0) 100%);
+  box-shadow: 0 0 14px rgba(255, 240, 200, 0.28);
+  opacity: 0.7;
+  animation: menuFlareSweep 7.8s ease-in-out infinite;
 }
 
 .menu-link {
@@ -241,6 +290,54 @@
   }
   100% {
     color: #ffffff;
+  }
+}
+
+@keyframes menuFlarePulse {
+  0%,
+  100% {
+    transform: scale(0.96);
+    opacity: 0.72;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+
+@keyframes menuFlareBreath {
+  0%,
+  100% {
+    transform: scale(0.97);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 0.62;
+  }
+}
+
+@keyframes menuFlareDrift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(0.95);
+    opacity: 0.42;
+  }
+  50% {
+    transform: translate3d(8px, -4px, 0) scale(1.08);
+    opacity: 0.82;
+  }
+}
+
+@keyframes menuFlareSweep {
+  0%,
+  100% {
+    transform: translateX(-10px);
+    opacity: 0.42;
+  }
+  50% {
+    transform: translateX(8px);
+    opacity: 0.88;
   }
 }
 

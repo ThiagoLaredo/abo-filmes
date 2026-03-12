@@ -39,8 +39,8 @@
 }
 
 .about-text {
-  font-size: clamp(17px, 1.8vw, 21px);
-  line-height: 1.65;
+  font-size: clamp(16px, 1.6vw, 19px);
+  line-height: 1.7;
   color: #ffffff;
 }
 
@@ -66,7 +66,12 @@
     padding: 90px 16px 60px;
   }
 
-    .about-main-title {
-            font-size: clamp(28px, 5vw, 36px);
-    }
+  .about-main-title {
+    font-size: clamp(28px, 5vw, 36px);
+  }
+
+  .about-text {
+    font-size: 15px;
+    line-height: 1.65;
+  }
 }

@@ -60,7 +60,7 @@ const MovieGrid = () => {
             className="movie-item"
             ref={(el) => (itemsRef.current[index] = el)} // Atribui a referência
           >
-            <Link to={`/filme/${movie.id}`}>
+            <Link to={`/filmes/${movie.slug}`}>
               <picture>
                 <source
                   srcSet={`${basePath}-500w.webp 500w, ${basePath}-1000w.webp 1000w`}

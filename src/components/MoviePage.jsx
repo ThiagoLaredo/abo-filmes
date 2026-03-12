@@ -5,12 +5,34 @@ import { movies } from '../movies';
 import './MoviePage.css';
 
 const MoviePage = () => {
-  const { id } = useParams();
-  const movie = movies.find(m => m.id === parseInt(id));
+  const { slug } = useParams();
+  const movie = movies.find(m => m.slug === slug);
   const pageRef = useRef(null);
   const curtainRef = useRef(null);
   const titleRef = useRef(null);
   const videoRef = useRef(null);
+
+  // Atualizar metatags dinâmicos
+  useEffect(() => {
+    if (!movie) return;
+
+    // Atualizar title
+    document.title = `${movie.title} | Abó Filmes`;
+
+    // Atualizar ou criar meta description
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.name = 'description';
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.content = `Vídeo Institucional "${movie.title}" produzido pela Abó Filmes. Confira nosso portfólio!`;
+
+    // Cleanup: restaurar title padrão ao desmontar
+    return () => {
+      document.title = 'Abó Filmes';
+    };
+  }, [movie]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
