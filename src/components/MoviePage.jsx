@@ -5,8 +5,11 @@ import { movies } from '../movies';
 import './MoviePage.css';
 
 const MoviePage = () => {
+  const { id } = useParams();
   const { slug } = useParams();
-  const movie = movies.find(m => m.slug === slug);
+  const movie = slug
+    ? movies.find((movieItem) => movieItem.slug === slug)
+    : movies.find((movieItem) => movieItem.id === Number(id));
   const pageRef = useRef(null);
   const curtainRef = useRef(null);
   const titleRef = useRef(null);
