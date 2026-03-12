@@ -74,7 +74,7 @@ const MovieGrid = () => {
                 />
                 <img
                   src={`${basePath}-500w.jpg`}
-                  alt={movie.title}
+                  alt=""
                   loading={index === 0 ? "eager" : "lazy"}
                   fetchPriority={index === 0 ? "high" : "auto"}
                 />

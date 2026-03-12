@@ -216,13 +216,13 @@ const SideHeader = () => {
         </button>
         <Link to="/contato" className="contact-link">AGENDE UMA CONVERSA</Link>
         <div className="social-icons">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram da Abó Filmes">
             <FaInstagram />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn da Abó Filmes">
             <FaLinkedin />
           </a>
-          <a href="https://vimeo.com/user149765444" target="_blank" rel="noopener noreferrer">
+          <a href="https://vimeo.com/user149765444" target="_blank" rel="noopener noreferrer" aria-label="Vimeo da Abó Filmes">
             <FaVimeo />
           </a>
         </div>
@@ -252,13 +252,13 @@ const SideHeader = () => {
 
             {/* Ícones sociais para mobile */}
             <div className="social-icons-mobile">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram da Abó Filmes">
                 <FaInstagram />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn da Abó Filmes">
                 <FaLinkedin />
               </a>
-              <a href="https://vimeo.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://vimeo.com" target="_blank" rel="noopener noreferrer" aria-label="Vimeo da Abó Filmes">
                 <FaVimeo />
               </a>
             </div>

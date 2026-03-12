@@ -56,7 +56,6 @@ export default function Hero() {
         preload="metadata"
         poster="/abo_reels_poster.webp"
       >
-        <source src="/abo_reels.webm" type="video/webm" />
         <source src="/abo_reels.mp4" type="video/mp4" />
         Seu navegador não suporta vídeos HTML5.
       </video>

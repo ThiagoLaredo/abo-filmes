@@ -31,6 +31,7 @@
 
     <!-- Optimization hints for fonts -->
     <link rel="preconnect" href="https://use.typekit.net">
+    <link rel="preconnect" href="https://p.typekit.net" crossorigin>
     <link rel="dns-prefetch" href="https://fonts.typekit.net">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -51,7 +52,7 @@
     <!-- TypeKit - loaded with media=print trick to defer without blocking -->
     <link 
       rel="stylesheet" 
-      href="https://use.typekit.net/mhr0vmu.css"
+      href="https://use.typekit.net/mhr0vmu.css?display=swap"
       media="print"
       onload="this.media='all'"
     />
@@ -59,39 +60,8 @@
     <!-- Fallback for browsers that don't support media queries on link -->
     <noscript>
       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet" />
-      <link rel="stylesheet" href="https://use.typekit.net/mhr0vmu.css" />
+      <link rel="stylesheet" href="https://use.typekit.net/mhr0vmu.css?display=swap" />
     </noscript>
-    
-    <style>
-      /* System fonts as fallback while web fonts load */
-      :root {
-        --font-fallback-display: Georgia, serif;
-        --font-fallback-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-      }
-      
-      /* Swap display when fonts load - reduces CLS */
-      @supports (font-display: swap) {
-        @font-face {
-          font-family: 'Quiche-Display';
-          font-display: swap;
-        }
-      }
-    </style>
-
-    <script>
-      /* Preload critical fonts to improve LCP */
-      (function() {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'style';
-        link.href = 'https://use.typekit.net/mhr0vmu.css';
-        link.onload = function() {
-          this.onload = null;
-          this.rel = 'stylesheet';
-        };
-        document.head.appendChild(link);
-      })();
-    </script>
 
     <script type="module" src="/src/main.jsx"></script>
   </head>
