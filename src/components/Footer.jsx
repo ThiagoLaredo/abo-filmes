@@ -13,7 +13,7 @@ export default function Footer() {
           <a href="/#filmes">Filmes</a>
           <Link to="/sobre">Sobre</Link>
           <Link to="/contato">Contato</Link>
-          <Link to="/manifesto">Manifesto</Link>
+          <Link to="/still">Still</Link>
         </nav>
 
         {/* <div className="footer-col footer-socials">

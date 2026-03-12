@@ -17,32 +17,23 @@ function ScrollToHash() {
   const location = useLocation();
 
   useEffect(() => {
-    // Se tem hash, scroll para o elemento
-    if (location.hash) {
-      const targetId = location.hash.replace('#', '');
-
-      const scrollToTarget = () => {
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      };
-
-      requestAnimationFrame(scrollToTarget);
-      const fallbackTimeout = setTimeout(scrollToTarget, 350);
-
-      return () => clearTimeout(fallbackTimeout);
-    } else {
-      // Se não tem hash, scroll para o topo
-      const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      };
-
-      requestAnimationFrame(scrollToTop);
-      const fallbackTimeout = setTimeout(scrollToTop, 100);
-
-      return () => clearTimeout(fallbackTimeout);
+    if (!location.hash) {
+      return;
     }
+
+    const targetId = location.hash.replace('#', '');
+
+    const scrollToTarget = () => {
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+
+    requestAnimationFrame(scrollToTarget);
+    const fallbackTimeout = setTimeout(scrollToTarget, 350);
+
+    return () => clearTimeout(fallbackTimeout);
   }, [location.pathname, location.hash]);
 
   return null;
@@ -51,29 +42,24 @@ function ScrollToHash() {
 function App() {
   return (
     <Router>
-      <div className="app-shell">
-        <ScrollToHash />
-        <SiteLogo />
-        <SideHeader />
-        <main className="app-content">
-          <Routes>
-            <Route path="/" element={
-              <>
-                <Hero />
-                <MovieGrid />
-                <Brands />
-              </>
-            } />
-            <Route path="/sobre" element={<AboutPage />} />
-            <Route path="/manifesto" element={<AboutPage />} />
-            <Route path="/contato" element={<ContactPage />} />
-            <Route path="/labcriativo" element={<LabCriativoPage />} />
-            <Route path="/filme/:id" element={<MoviePage />} />
-            <Route path="/filmes/:slug" element={<MoviePage />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <ScrollToHash />
+      <SiteLogo />
+      <SideHeader />
+      <Routes>
+        <Route path="/" element={
+          <>
+            <Hero />
+            <MovieGrid />
+            <Brands />
+          </>
+        } />
+        <Route path="/sobre" element={<AboutPage />} />
+        <Route path="/manifesto" element={<AboutPage />} />
+        <Route path="/contato" element={<ContactPage />} />
+        <Route path="/labcriativo" element={<LabCriativoPage />} />
+        <Route path="/filme/:id" element={<MoviePage />} />
+      </Routes>
+      <Footer />
     </Router>
   );
 }
