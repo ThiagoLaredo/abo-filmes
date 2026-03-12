@@ -377,6 +377,7 @@
     box-shadow: none;
     -webkit-tap-highlight-color: transparent;
     transition: background-color 0.25s ease;
+
   }
 
   .mobile-menu-toggle.is-mobile-scrolled {
