@@ -64,18 +64,19 @@ const MovieGrid = () => {
               <picture>
                 <source
                   srcSet={`${basePath}-500w.webp 500w, ${basePath}-1000w.webp 1000w`}
-                  sizes="(max-width: 480px) 456px, (max-width: 768px) 362px, 373px"
+                  sizes="(max-width: 480px) 90vw, (max-width: 768px) calc(50vw - 20px), calc(33.33vw - 16px)"
                   type="image/webp"
                 />
                 <source
                   srcSet={`${basePath}-500w.jpg 500w, ${basePath}-1000w.jpg 1000w`}
-                  sizes="(max-width: 480px) 456px, (max-width: 768px) 362px, 373px"
+                  sizes="(max-width: 480px) 90vw, (max-width: 768px) calc(50vw - 20px), calc(33.33vw - 16px)"
                   type="image/jpeg"
                 />
                 <img
                   src={`${basePath}-500w.jpg`}
                   alt={movie.title}
-                  loading="lazy"
+                  loading={index === 0 ? "eager" : "lazy"}
+                  fetchPriority={index === 0 ? "high" : "auto"}
                 />
               </picture>
               <div className="movie-title">{movie.title}</div>

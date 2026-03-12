@@ -55,7 +55,13 @@ const Brands = () => {
                 logosRef.current[index] = el;
               }}
             >
-              <img src={brand.logo} alt={brand.name} loading="lazy" />
+              <img 
+                src={brand.logo} 
+                alt={brand.name} 
+                loading="lazy"
+                width="160"
+                height="80"
+              />
             </div>
           ))}
         </div>

@@ -47,7 +47,6 @@
 .mobile-menu-toggle:focus-visible {
   outline: none !important;
   box-shadow: none !important;
-  border: none !important;
 }
 
 .menu-icon {
@@ -361,7 +360,7 @@
     top: calc(var(--mobile-top-offset, 0px) + env(safe-area-inset-top, 0px) + 8px);
     right: 12px;
     background: none;        /* sem fundo */
-    border: none;            /* sem borda */
+    border: 1px solid rgba(255, 255, 255, 0.5);
     color: white;
     cursor: pointer;
     z-index: 1001;
@@ -382,7 +381,6 @@
 
   .mobile-menu-toggle.is-mobile-scrolled {
     background-color: rgba(0, 0, 0, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.5);
   }
 
   /* Ajustes no menu fullscreen para mobile */

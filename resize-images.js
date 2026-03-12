@@ -27,7 +27,7 @@ fs.readdirSync(inputDir).forEach(file => {
       // Gerar WebP redimensionado
       sharp(inputPath)
         .resize(size)
-        .webp({ quality: 85 })
+        .webp({ quality: 75 })
         .toFile(outputWebp)
         .then(() => console.log(`✅ Gerado: ${baseName}-${size}w.webp`))
         .catch(err => console.error(`❌ Erro ao gerar ${baseName}-${size}w.webp:`, err));
@@ -35,7 +35,7 @@ fs.readdirSync(inputDir).forEach(file => {
       // Gerar JPEG redimensionado
       sharp(inputPath)
         .resize(size)
-        .jpeg({ quality: 85, mozjpeg: true })
+        .jpeg({ quality: 80, mozjpeg: true })
         .toFile(outputJpg)
         .then(() => console.log(`✅ Gerado: ${baseName}-${size}w.jpg`))
         .catch(err => console.error(`❌ Erro ao gerar ${baseName}-${size}w.jpg:`, err));
