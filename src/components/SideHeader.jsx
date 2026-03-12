@@ -222,7 +222,7 @@ const SideHeader = () => {
           <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
             <FaLinkedin />
           </a>
-          <a href="https://vimeo.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://vimeo.com/user149765444" target="_blank" rel="noopener noreferrer">
             <FaVimeo />
           </a>
         </div>
