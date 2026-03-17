@@ -107,13 +107,25 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   cursor: pointer;
-  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-.contact-submit:hover {
+@media (hover: hover) {
+  .contact-submit {
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  .contact-submit:hover {
+    background: transparent;
+    color: #ffffff;
+    outline: none;
+  }
+}
+
+.contact-submit:focus-visible {
   background: transparent;
   color: #ffffff;
-  outline: none;
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
 }
 
 .contact-feedback {

@@ -80,6 +80,15 @@
   width: 24px;
 }
 
+@media (hover: hover) {
+  .menu-toggle:hover .menu-line-2,
+  .menu-toggle:hover .menu-line-3,
+  .mobile-menu-toggle:hover .menu-line-2,
+  .mobile-menu-toggle:hover .menu-line-3 {
+    width: 34px;
+  }
+}
+
 .menu-icon.is-open {
   justify-content: center;
   align-items: center;
@@ -124,11 +133,23 @@
   width: 0;
   height: 1px;
   background-color: white;
-  transition: width 0.3s ease;
 }
 
-.contact-link:hover::after {
-  width: 100%;
+@media (hover: hover) {
+  .contact-link::after {
+    transition: width 0.3s ease;
+  }
+
+  .contact-link:hover::after,
+  .contact-link:focus-visible::after {
+    width: 100%;
+  }
+}
+
+@media (hover: none) {
+  .contact-link:focus-visible::after {
+    width: 100%;
+  }
 }
 
 .social-icons {
@@ -148,12 +169,24 @@
   justify-content: center;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.social-icons a:hover {
-  background-color: white;
-  color: black;
+@media (hover: hover) {
+  .social-icons a {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .social-icons a:hover {
+    background-color: white;
+    color: black;
+  }
+}
+
+@media (hover: hover) {
+  .social-icons a:focus-visible {
+    background-color: white;
+    color: black;
+  }
 }
 
 .fullscreen-menu {
@@ -357,7 +390,7 @@
   .mobile-menu-toggle {
     display: flex;
     position: fixed;
-    top: calc(var(--mobile-top-offset, 0px) + env(safe-area-inset-top, 0px) + 8px);
+    top: calc(var(--mobile-top-offset, 0px) + env(safe-area-inset-top, 0px) + 12px);
     right: 12px;
     background: none;        /* sem fundo */
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -414,10 +447,16 @@
     animation: none !important;
   }
 
-  .menu-link:hover .menu-link-char,
   .menu-link:focus-visible .menu-link-char {
     color: #ffffff;
     animation: none !important;
+  }
+
+  @media (hover: hover) {
+    .menu-link:hover .menu-link-char {
+      color: #ffffff;
+      animation: none !important;
+    }
   }
 
   /* Container dos ícones sociais dentro do menu (horizontal) - garantido visível */
@@ -439,11 +478,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s;
     text-decoration: none;
   }
 
-  .social-icons-mobile a:hover {
+  @media (hover: hover) {
+    .social-icons-mobile a {
+      transition: all 0.3s;
+    }
+
+    .social-icons-mobile a:hover {
+      background-color: white;
+      color: black;
+    }
+  }
+
+  .social-icons-mobile a:focus-visible {
     background-color: white;
     color: black;
   }

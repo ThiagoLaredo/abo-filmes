@@ -40,11 +40,16 @@
   height: 100%;
   display: block;
   object-fit: cover; /* Garante que a imagem preencha todo o espaço sem distorcer */
-  transition: transform 0.3s ease;
 }
 
-.movie-item:hover img {
-  transform: scale(1.05);
+@media (hover: hover) {
+  .movie-item img {
+    transition: transform 0.3s ease;
+  }
+
+  .movie-item:hover img {
+    transform: scale(1.05);
+  }
 }
 
 /* Overlay e título centralizado */
@@ -61,12 +66,22 @@
   font-size: 18px;
   font-weight: bold;
   opacity: 0;
-  transition: opacity 0.3s ease;
 }
 
-/* Exibe overlay apenas no hover (opcional – remova se quiser sempre visível) */
-.movie-item:hover .movie-title {
-  opacity: 1;
+@media (hover: hover) {
+  .movie-title {
+    transition: opacity 0.3s ease;
+  }
+
+  .movie-item:hover .movie-title {
+    opacity: 1;
+  }
+}
+
+@media (hover: none) {
+  .movie-title {
+    opacity: 0.4;
+  }
 }
 
 

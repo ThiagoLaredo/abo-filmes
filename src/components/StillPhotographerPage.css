@@ -1,0 +1,94 @@
+.still-photographer-page {
+  position: relative;
+  min-height: 100vh;
+  padding: 120px 20px 80px;
+  overflow: hidden;
+}
+
+.still-photographer-curtain {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.still-photographer-header,
+.still-photographer-gallery,
+.still-photographer-empty {
+  position: relative;
+  z-index: 2;
+}
+
+.still-photographer-header {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.still-photographer-header h1 {
+  color: #ffffff;
+  font-size: clamp(34px, 4.4vw, 58px);
+  line-height: 1.04;
+  margin-bottom: 16px;
+}
+
+.still-photographer-header p {
+  max-width: 760px;
+  color: #b8b8b8;
+  font-size: clamp(16px, 1.6vw, 19px);
+  line-height: 1.7;
+}
+
+.still-photographer-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.still-photographer-shot {
+  margin: 0;
+}
+
+.still-photographer-shot picture,
+.still-photographer-shot img {
+  display: block;
+  width: 100%;
+}
+
+.still-photographer-shot img {
+  height: auto;
+  border-radius: 14px;
+}
+
+.still-photographer-empty {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  padding: 120px 20px 80px;
+}
+
+@media (max-width: 768px) {
+  .still-photographer-page {
+    padding: 100px 16px 60px;
+  }
+
+  .still-photographer-header {
+    margin-bottom: 28px;
+  }
+
+  .still-photographer-header p {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .still-photographer-gallery {
+    gap: 16px;
+  }
+
+  .still-photographer-shot img {
+    border-radius: 10px;
+  }
+}

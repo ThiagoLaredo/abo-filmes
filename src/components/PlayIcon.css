@@ -1,18 +1,26 @@
 .play-icon {
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 .play-triangle {
   fill: none;
   stroke: white;
   stroke-width: 4;
-  transition: all 0.3s ease;
   transform-origin: center;
 }
 
-/* Fundo branco atrás do play vazado no hover */
-.video-frame:hover .play-triangle {
-  stroke-width: 6;
-  transform: scale(1.1);
+@media (hover: hover) {
+  .play-icon {
+    transition: all 0.3s ease;
+  }
+
+  .play-triangle {
+    transition: all 0.3s ease;
+  }
+
+  /* Fundo branco atrás do play vazado no hover */
+  .video-frame:hover .play-triangle {
+    stroke-width: 6;
+    transform: scale(1.1);
+  }
 }

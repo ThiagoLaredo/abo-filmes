@@ -21,12 +21,62 @@
   font-family: var(--font-display);
 }
 
+.site-logo-animated {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.42ch;
+}
+
 .site-logo strong {
+  display: inline-flex;
+  align-items: center;
   font-weight: 800;
 }
 
 .site-logo-separator {
+  display: inline-flex;
+  align-items: center;
   font-weight: 100;
+}
+
+.site-logo-compact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-char {
+  position: relative;
+  display: inline-flex;
+  line-height: 1;
+}
+
+.logo-char::after {
+  display: none;
+}
+
+.logo-char-glyph {
+  display: block;
+  opacity: 1;
+}
+
+.logo-char.is-curtain-entering .logo-char-glyph {
+  animation: logoLetterDissolveIn 0.34s ease-out both;
+  animation-delay: calc(var(--i) * 44ms);
+}
+
+.logo-char.is-curtain-leaving .logo-char-glyph {
+  animation: logoLetterDissolveOut 0.28s ease-in both;
+  animation-delay: calc(var(--i) * 38ms);
+}
+
+.site-logo-compact.is-fading-entering {
+  animation: logoFadeIn 0.35s ease-out both;
+}
+
+.site-logo-compact.is-fading-leaving {
+  animation: logoFadeOut 0.28s ease-in both;
 }
 
 .site-logo.is-scrolled {
@@ -44,9 +94,68 @@
   gap: 0;
 }
 
+.sr-only-logo-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@keyframes logoLetterDissolveIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes logoLetterDissolveOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes logoFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes logoFadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-char,
+  .logo-char::after,
+  .logo-char-glyph,
+  .site-logo-compact {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
 @media (max-width: 768px) {
   .site-logo {
-    top: calc(var(--mobile-top-offset, 0px) + env(safe-area-inset-top, 0px) + 8px);
+    top: calc(var(--mobile-top-offset, 0px) + env(safe-area-inset-top, 0px) + 12px);
     left: 12px;
     font-size: clamp(18px, 6vw, 24px);
     padding: 0;
@@ -54,8 +163,8 @@
   }
 
   .site-logo.is-scrolled {
-    width: 56px;
-    height: 56px;
+    width: 58px;
+    height: 58px;
     font-size: 20px;
   }
 }

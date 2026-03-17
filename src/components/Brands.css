@@ -15,9 +15,10 @@
 }
 
 .brands-grid {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 18px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
 }
 
 .brand-item {
@@ -36,11 +37,13 @@
   height: 80px;
   object-fit: contain;
   filter: brightness(0) invert(1);
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
 }
 
 @media (max-width: 1024px) {
   .brands-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    flex-wrap: wrap;
   }
 }
 
@@ -55,7 +58,7 @@
   }
 
   .brands-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    flex-wrap: wrap;
     gap: 12px;
   }
 }
@@ -66,7 +69,7 @@
   }
 
   .brands-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    flex-wrap: wrap;
     gap: 12px;
   }
 }

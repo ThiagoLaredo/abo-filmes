@@ -78,7 +78,7 @@ const AboutPage = () => {
         <h1 className="about-main-title">Abó Filmes – Histórias que nos aproximam.</h1>
 
         <p className="about-text">
-          Pra nós o audiovisual não é um fim em si mesmo, nem uma entrega com linha de chegada. É uma <strong className="about-highlight">{emphasizeLetters('ponte.')}</strong>
+          Pra nós o audiovisual não é um fim, nem uma entrega com linha de chegada. É uma <strong className="about-highlight">{emphasizeLetters('ponte.')}</strong>
         </p>
 
         <h2 className="about-section-title">A Humanidade como Norte:</h2>
@@ -91,14 +91,9 @@ const AboutPage = () => {
           Aproximar exige movimento. É um convite constante para sair do lugar comum e entender o outro. Histórias que nos aproximam, traduz a nossa crença de que uma história só está completa quando ela gera <strong className="about-highlight">{emphasizeLetters('identificação e encurta distâncias.')}</strong>
         </p>
 
-        <h2 className="about-section-title">A Sonoridade "Abó":</h2>
-        <p className="about-text">
-          O nome Abó carrega uma fonética acolhedora, que remete à origem e ao afeto. Dizer que nossas histórias "nos aproximam" reforça essa sensação de casa, de verdade e de algo que é feito de gente para gente.
-        </p>
-
         <h2 className="about-section-title">A Relevância Comercial:</h2>
         <p className="about-text">
-          entregamos o valor mais valioso do audiovisual moderno: a <strong className="about-highlight about-highlight-static" data-no-animate="true">conexão humana.</strong>
+          Entregamos o valor mais valioso do audiovisual moderno: a <strong className="about-highlight about-highlight-static" data-no-animate="true">conexão humana.</strong>
         </p>
       </section>
     </main>

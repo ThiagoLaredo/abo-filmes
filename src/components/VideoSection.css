@@ -30,7 +30,9 @@
   pointer-events: none;
 }
 
-/* Hover apenas no play */
-.video-frame:hover .play-icon {
-  transform: scale(1.15);
+@media (hover: hover) {
+  /* Hover apenas no play */
+  .video-frame:hover .play-icon {
+    transform: scale(1.15);
+  }
 }

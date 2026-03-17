@@ -64,7 +64,12 @@
   animation-play-state: paused;
 }
 
-.hero-play-badge:hover .hero-circular-text,
+@media (hover: hover) {
+  .hero-play-badge:hover .hero-circular-text {
+    animation-play-state: running;
+  }
+}
+
 .hero-play-badge:focus-visible .hero-circular-text {
   animation-play-state: running;
 }

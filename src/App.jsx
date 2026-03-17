@@ -8,7 +8,8 @@ import Brands from "./components/Brands";
 import MoviePage from "./components/MoviePage";
 import AboutPage from "./components/AboutPage";
 import ContactPage from "./components/ContactPage";
-import StillPage from "./components/LabCriativoPage";
+import StillPage from "./components/StillPage";
+import StillPhotographerPage from "./components/StillPhotographerPage";
 import Footer from "./components/Footer";
 import SideHeader from "./components/SideHeader";
 import SiteLogo from "./components/SiteLogo";
@@ -59,6 +60,7 @@ function App() {
             <Route path="/sobre" element={<AboutPage />} />
             <Route path="/contato" element={<ContactPage />} />
             <Route path="/still" element={<StillPage />} />
+            <Route path="/still/:slug" element={<StillPhotographerPage />} />
             <Route path="/filmes/:slug" element={<MoviePage />} />
             <Route path="/filme/:id" element={<MoviePage />} />
           </Routes>

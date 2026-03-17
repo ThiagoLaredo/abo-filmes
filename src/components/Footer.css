@@ -44,10 +44,19 @@
   width: 0;
   height: 1px;
   background-color: #ffffff;
-  transition: width 0.25s ease;
 }
 
-.footer-menu a:hover::after {
+@media (hover: hover) {
+  .footer-menu a::after {
+    transition: width 0.25s ease;
+  }
+
+  .footer-menu a:hover::after {
+    width: 100%;
+  }
+}
+
+.footer-menu a:focus-visible::after {
   width: 100%;
 }
 
