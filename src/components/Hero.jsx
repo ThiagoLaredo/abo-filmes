@@ -5,6 +5,9 @@ import VideoModal from "./VideoModal";
 
 export default function Hero() {
   const [isReelModalOpen, setIsReelModalOpen] = useState(false);
+  const heroCircleRadius = 82;
+  const heroCircleLength = Math.round(2 * Math.PI * heroCircleRadius);
+  const heroCircleText = "Assista o Vídeo \u00A0\u00A0\u2022\u00A0\u00A0\u00A0 Assista o Vídeo \u00A0\u00A0\u2022\u00A0\u00A0\u00A0 Assista o Vídeo \u00A0\u00A0\u2022\u00A0\u00A0\u00A0";
 
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
@@ -83,9 +86,9 @@ export default function Hero() {
                 d="M 110,110 m -82,0 a 82,82 0 1,1 164,0 a 82,82 0 1,1 -164,0"
               />
             </defs>
-            <text>
+            <text textLength={heroCircleLength} lengthAdjust="spacing">
               <textPath href="#heroCirclePath" startOffset="0%">
-                Assista o Vídeo • Assista o Vídeo • Assista o Vídeo •
+                {heroCircleText}
               </textPath>
             </text>
           </svg>
