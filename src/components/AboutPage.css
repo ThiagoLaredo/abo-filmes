@@ -44,23 +44,6 @@
   color: #ffffff;
 }
 
-.about-highlight {
-  font-weight: 700;
-}
-
-.about-highlight-no-break {
-  white-space: nowrap;
-}
-
-.about-highlight-static {
-  color: #ffffff;
-}
-
-.about-highlight-char {
-  display: inline-block;
-  color: #7a7a7a;
-}
-
 @media (max-width: 768px) {
   .about-page {
     padding: 90px 16px 60px;
