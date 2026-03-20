@@ -6,8 +6,9 @@ import './Brands.css';
 gsap.registerPlugin(ScrollTrigger);
 
 const brands = [
-  { id: 1, name: 'Brand One', logo: '/brands/logo-tegra.png' },
-  { id: 2, name: 'Brand Two', logo: '/brands/logo-kwai.png' },
+  { id: 1, name: 'Brand One', logo: '/brands/logo-tegra.svg' },
+  { id: 2, name: 'Brand Two', logo: '/brands/logo-kwai.svg' },
+  { id: 3, name: 'Brand Three', logo: '/brands/logo-planoeplano.svg' },
 ];
 
 const Brands = () => {

@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { photographers } from '../stills';
@@ -18,6 +17,13 @@ const getDefaultSrc = (image, preferredWidth) => {
 
   return `${image.basePath}-${width}w.jpg`;
 };
+
+const allStillImages = photographers.flatMap((photographer) =>
+  photographer.images.map((image) => ({
+    ...image,
+    photographerName: photographer.name,
+  }))
+);
 
 const StillPage = () => {
   const pageRef = useRef(null);
@@ -84,39 +90,36 @@ const StillPage = () => {
           Colaboramos com fotógrafos em tudo, desde ensaios pontuais em estúdio até campanhas de grande escala ao redor do mundo. Nosso trabalho abrange fotografia de produto, lifestyle e estúdio, criadas para varejo, mídias sociais e mídia exterior. Cada projeto começa com a escolha do fotógrafo certo para se alinhar à visão criativa e ao público. </p>
       </section>
 
-      <section className="still-grid" aria-label="Galeria de fotógrafos">
-        {photographers.map((photographer, index) => (
+      <section className="still-grid" aria-label="Galeria still">
+        {allStillImages.map((image, index) => (
           <article
             className="still-item"
-            key={photographer.id}
+            key={image.id}
             ref={(element) => {
               itemsRef.current[index] = element;
             }}
           >
-            <Link to={`/still/${photographer.slug}`} className="still-item-link">
-              <picture>
-                <source
-                  srcSet={buildSrcSet(photographer.cover, 'webp')}
-                  sizes="(max-width: 480px) 100vw, (max-width: 768px) calc(50vw - 24px), calc(33.33vw - 24px)"
-                  type="image/webp"
-                />
-                <source
-                  srcSet={buildSrcSet(photographer.cover, 'jpg')}
-                  sizes="(max-width: 480px) 100vw, (max-width: 768px) calc(50vw - 24px), calc(33.33vw - 24px)"
-                  type="image/jpeg"
-                />
-                <img
-                  src={getDefaultSrc(photographer.cover, 700)}
-                  alt={photographer.coverAlt}
-                  width={photographer.cover.width}
-                  height={photographer.cover.height}
-                  loading={index === 0 ? 'eager' : 'lazy'}
-                  fetchPriority={index === 0 ? 'high' : 'auto'}
-                  decoding="async"
-                />
-              </picture>
-              <div className="still-item-title">{photographer.name}</div>
-            </Link>
+            <picture>
+              <source
+                srcSet={buildSrcSet(image, 'webp')}
+                sizes="(max-width: 480px) 100vw, (max-width: 768px) calc(50vw - 20px), calc((100vw - 80px) / 3)"
+                type="image/webp"
+              />
+              <source
+                srcSet={buildSrcSet(image, 'jpg')}
+                sizes="(max-width: 480px) 100vw, (max-width: 768px) calc(50vw - 20px), calc((100vw - 80px) / 3)"
+                type="image/jpeg"
+              />
+              <img
+                src={getDefaultSrc(image, 700)}
+                alt={image.alt || `Still de ${image.photographerName}`}
+                width={image.width}
+                height={image.height}
+                loading={index === 0 ? 'eager' : 'lazy'}
+                fetchPriority={index === 0 ? 'high' : 'auto'}
+                decoding="async"
+              />
+            </picture>
           </article>
         ))}
       </section>

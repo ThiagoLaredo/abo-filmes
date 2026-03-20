@@ -59,7 +59,7 @@ export default function Hero() {
         preload="metadata"
         poster="/abo_reels_poster.webp"
       >
-        <source src="/abo_reels.mp4" type="video/mp4" />
+        <source src="/abo_reels2.mp4" type="video/mp4" />
         Seu navegador não suporta vídeos HTML5.
       </video>
 
@@ -102,7 +102,7 @@ export default function Hero() {
       </div>
 
       <VideoModal
-        videoSrc="/abo_reels.mp4"
+        videoSrc="/abo_reels2.mp4"
         isOpen={isReelModalOpen}
         onClose={() => setIsReelModalOpen(false)}
       />

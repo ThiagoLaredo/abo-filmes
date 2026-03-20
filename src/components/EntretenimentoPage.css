@@ -1,0 +1,60 @@
+.entretenimento-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 110px 20px 80px;
+  overflow: hidden;
+}
+
+.entretenimento-page-curtain {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.entretenimento-container {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.entretenimento-main-title {
+  font-size: clamp(24px, 2.5vw, 40px); /* valores reduzidos */
+  line-height: 1.1;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+.entretenimento-section-title {
+  font-size: clamp(18px, 2vw, 28px);
+  line-height: 1.2;
+  margin-top: 8px;
+  color: #ffffff;
+}
+
+.entretenimento-text {
+  font-size: clamp(16px, 1.6vw, 19px);
+  line-height: 1.7;
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .entretenimento-page {
+    padding: 90px 16px 60px;
+  }
+
+  .entretenimento-main-title {
+    font-size: clamp(28px, 5vw, 36px);
+  }
+
+  .entretenimento-text {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+}
