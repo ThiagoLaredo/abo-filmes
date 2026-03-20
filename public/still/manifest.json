@@ -1,4 +1,30 @@
 {
+  "dani-gurgel": [
+    {
+      "originalFile": "Dani Gurgel.jpg",
+      "outputBaseName": "dani-gurgel-01",
+      "width": 2048,
+      "height": 1583
+    },
+    {
+      "originalFile": "Dani Gurgel(1).jpg",
+      "outputBaseName": "dani-gurgel-02",
+      "width": 2048,
+      "height": 1365
+    },
+    {
+      "originalFile": "Dani Gurgel(2).jpg",
+      "outputBaseName": "dani-gurgel-03",
+      "width": 2048,
+      "height": 1365
+    },
+    {
+      "originalFile": "Dani Gurgel(3).jpg",
+      "outputBaseName": "dani-gurgel-04",
+      "width": 2048,
+      "height": 1365
+    }
+  ],
   "edu-pimenta": [
     {
       "originalFile": "Edu Pimenta - Jair Rodrigues.jpg",

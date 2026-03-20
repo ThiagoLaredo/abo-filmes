@@ -1,10 +1,26 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { photographers } from '../stills';
 import './StillPage.css';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const OUTPUT_WIDTHS = [700, 1400, 2200];
+
+const slugToName = (slug) =>
+  slug
+    .split('-')
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ');
+
+const getWidths = (originalWidth) => {
+  if (!originalWidth || Number.isNaN(Number(originalWidth))) {
+    return [700];
+  }
+
+  return [...new Set(OUTPUT_WIDTHS.filter((width) => width < originalWidth).concat(originalWidth))]
+    .sort((a, b) => a - b);
+};
 
 const buildSrcSet = (image, extension) =>
   image.widths
@@ -18,18 +34,53 @@ const getDefaultSrc = (image, preferredWidth) => {
   return `${image.basePath}-${width}w.jpg`;
 };
 
-const allStillImages = photographers.flatMap((photographer) =>
-  photographer.images.map((image) => ({
-    ...image,
-    photographerName: photographer.name,
-  }))
-);
-
 const StillPage = () => {
   const pageRef = useRef(null);
   const contentRef = useRef(null);
   const curtainRef = useRef(null);
   const itemsRef = useRef([]);
+  const [stillImages, setStillImages] = useState([]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadManifest = async () => {
+      try {
+        const response = await fetch('/still/manifest.json', { cache: 'no-store' });
+
+        if (!response.ok) {
+          throw new Error(`Falha ao carregar manifest (${response.status})`);
+        }
+
+        const manifest = await response.json();
+        const allImages = Object.entries(manifest).flatMap(([slug, entries]) => {
+          const photographerName = slugToName(slug);
+
+          return entries.map((entry, index) => ({
+            id: `${slug}-${index + 1}`,
+            basePath: `/still/${slug}/${entry.outputBaseName}`,
+            widths: getWidths(entry.width),
+            width: entry.width,
+            height: entry.height,
+            alt: `Fotografia de ${photographerName}`,
+            photographerName,
+          }));
+        });
+
+        if (isMounted) {
+          setStillImages(allImages);
+        }
+      } catch (error) {
+        console.error('Erro ao carregar galeria still:', error);
+      }
+    };
+
+    loadManifest();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -52,6 +103,20 @@ const StillPage = () => {
           },
           '-=0.12'
         );
+    }, pageRef);
+
+    return () => {
+      ctx.revert();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (stillImages.length === 0) {
+      return;
+    }
+
+    const ctx = gsap.context(() => {
+      itemsRef.current = itemsRef.current.slice(0, stillImages.length);
 
       itemsRef.current.forEach((item) => {
         if (!item) return;
@@ -75,10 +140,9 @@ const StillPage = () => {
     }, pageRef);
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       ctx.revert();
     };
-  }, []);
+  }, [stillImages]);
 
   return (
     <main className="still-page" ref={pageRef}>
@@ -91,7 +155,7 @@ const StillPage = () => {
       </section>
 
       <section className="still-grid" aria-label="Galeria still">
-        {allStillImages.map((image, index) => (
+        {stillImages.map((image, index) => (
           <article
             className="still-item"
             key={image.id}
