@@ -49,8 +49,23 @@
   padding-left: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  font-size: clamp(18px, 1.8vw, 21px);
+  gap: 24px;
+  font-size: clamp(20px, 2vw, 21px);
+}
+
+.servicos-list-item {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.service-char {
+  display: inline-flex;
+  position: relative;
+  line-height: 1;
+}
+
+.service-char-glyph {
+  display: block;
 }
 
 @media (max-width: 768px) {
@@ -65,5 +80,16 @@
   .servicos-text {
     font-size: 15px;
     line-height: 1.65;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-char,
+  .service-char-glyph {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
   }
 }
