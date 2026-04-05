@@ -42,13 +42,12 @@ const MoviePage = () => {
       gsap.set([titleRef.current, videoRef.current], { opacity: 0, y: 28 });
       gsap.set(curtainRef.current, { scaleY: 1, transformOrigin: 'top center' });
 
-      const tl = gsap.timeline();
-
-      tl.to(curtainRef.current, {
-        scaleY: 0,
-        duration: 0.8,
-        ease: 'power3.inOut',
-      })
+      gsap.timeline()
+        .to(curtainRef.current, {
+          scaleY: 0,
+          duration: 0.8,
+          ease: 'power3.inOut',
+        })
         .to(
           [titleRef.current, videoRef.current],
           {
@@ -72,17 +71,19 @@ const MoviePage = () => {
   return (
     <div className="movie-page" ref={pageRef}>
       <div className="movie-page-curtain" ref={curtainRef}></div>
-      <h1 ref={titleRef}>{movie.title}</h1>
-      <div className="vimeo-embed" ref={videoRef}>
-        <iframe
-          src={`https://player.vimeo.com/video/${movie.vimeoId}`}
-          width="640"
-          height="360"
-          frameBorder="0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowFullScreen
-          title={movie.title}
-        ></iframe>
+      <div className="movie-page-inner">
+        <h1 ref={titleRef}>{movie.title}</h1>
+        <div className="vimeo-embed" ref={videoRef}>
+          <iframe
+            src={`https://player.vimeo.com/video/${movie.vimeoId}`}
+            width="640"
+            height="360"
+            frameBorder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            title={movie.title}
+          ></iframe>
+        </div>
       </div>
     </div>
   );

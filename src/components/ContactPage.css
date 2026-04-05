@@ -17,7 +17,9 @@
 .contact-shell {
   position: relative;
   z-index: 2;
-  max-width: 800px;
+  width: min(100%, var(--internal-page-content-max-width));
+  max-width: var(--internal-page-content-max-width);
+  box-sizing: border-box;
   margin: 0 auto;
   /* border: 1px solid rgba(255, 255, 255, 0.2); */
   border-radius: 20px;
@@ -30,6 +32,7 @@
   line-height: var(--internal-page-title-line-height);
   color: #ffffff;
   margin-bottom: 12px;
+  text-align: center;
 }
 
 .contact-header p {

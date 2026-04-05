@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaInstagram, FaLinkedin, FaVimeo } from 'react-icons/fa';
 import { gsap } from 'gsap';
 import './SideHeader.css';
 
 const SideHeader = () => {
-  const location = useLocation();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -50,12 +49,18 @@ const SideHeader = () => {
   };
 
   const closeMenu = (onAfterClose) => {
-    if (isAnimatingRef.current || !isMenuVisible || !menuRef.current) {
+    if (!isMenuVisible || !menuRef.current) {
       return;
     }
 
     isAnimatingRef.current = true;
     setIsMenuOpen(false);
+
+    gsap.killTweensOf(borderRef.current);
+    gsap.killTweensOf(menuRef.current);
+    gsap.killTweensOf(curtainRef.current);
+    gsap.killTweensOf(decorDotsRef.current);
+    gsap.killTweensOf(menuLinksRef.current);
 
     gsap.to(borderRef.current, { height: 0, duration: 0.4, ease: 'power2.in' });
 
@@ -63,9 +68,6 @@ const SideHeader = () => {
       onComplete: () => {
         setIsMenuVisible(false);
         isAnimatingRef.current = false;
-        if (onAfterClose) {
-          onAfterClose();
-        }
       },
     });
 
@@ -97,6 +99,11 @@ const SideHeader = () => {
         },
         '-=0.06'
       )
+      .call(() => {
+        if (onAfterClose) {
+          onAfterClose();
+        }
+      })
       .to(
         menuRef.current,
         {
@@ -206,6 +213,13 @@ const SideHeader = () => {
     closeMenu(goToFilmes);
   };
 
+  const handleMenuNavigation = (targetPath) => (event) => {
+    event.preventDefault();
+    closeMenu(() => {
+      navigate(targetPath);
+    });
+  };
+
   return (
     <>
       {/* Side Header - visível apenas no desktop (CSS cuida disso) */}
@@ -245,12 +259,12 @@ const SideHeader = () => {
             <span className="menu-flare menu-flare-streak" ref={(el) => (decorDotsRef.current[4] = el)}></span>
           </div>
           <div className="menu-content" onClick={(e) => e.stopPropagation()}>
-            <Link to="/sobre" className="menu-link" onClick={closeMenu} ref={(el) => (menuLinksRef.current[0] = el)}>{renderMenuLabel('SOBRE')}</Link>
+            <Link to="/sobre" className="menu-link" onClick={handleMenuNavigation('/sobre')} ref={(el) => (menuLinksRef.current[0] = el)}>{renderMenuLabel('SOBRE')}</Link>
             <a href="/#filmes" className="menu-link" onClick={handleFilmesClick} ref={(el) => (menuLinksRef.current[1] = el)}>{renderMenuLabel('FILMES')}</a>
-            <Link to="/servicos" className="menu-link" onClick={closeMenu} ref={(el) => (menuLinksRef.current[2] = el)}>{renderMenuLabel('SERVIÇOS')}</Link>
-            <Link to="/contato" className="menu-link" onClick={closeMenu} ref={(el) => (menuLinksRef.current[3] = el)}>{renderMenuLabel('CONTATO')}</Link>
-            <Link to="/fotografia" className="menu-link" onClick={closeMenu} ref={(el) => (menuLinksRef.current[4] = el)}>{renderMenuLabel('FOTOGRAFIA')}</Link>
-            <Link to="/entretenimento" className="menu-link" onClick={closeMenu} ref={(el) => (menuLinksRef.current[5] = el)}>{renderMenuLabel('ENTRETENIMENTO')}</Link>
+            <Link to="/servicos" className="menu-link" onClick={handleMenuNavigation('/servicos')} ref={(el) => (menuLinksRef.current[2] = el)}>{renderMenuLabel('SERVIÇOS')}</Link>
+            <Link to="/contato" className="menu-link" onClick={handleMenuNavigation('/contato')} ref={(el) => (menuLinksRef.current[3] = el)}>{renderMenuLabel('CONTATO')}</Link>
+            <Link to="/fotografia" className="menu-link" onClick={handleMenuNavigation('/fotografia')} ref={(el) => (menuLinksRef.current[4] = el)}>{renderMenuLabel('FOTOGRAFIA')}</Link>
+            <Link to="/entretenimento" className="menu-link" onClick={handleMenuNavigation('/entretenimento')} ref={(el) => (menuLinksRef.current[5] = el)}>{renderMenuLabel('ENTRETENIMENTO')}</Link>
 
             {/* Ícones sociais para mobile */}
             <div className="social-icons-mobile">

@@ -17,7 +17,9 @@
 .about-container {
   position: relative;
   z-index: 2;
-  max-width: 800px;
+  width: min(100%, var(--internal-page-content-max-width));
+  max-width: var(--internal-page-content-max-width);
+  box-sizing: border-box;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -29,6 +31,7 @@
   line-height: var(--internal-page-title-line-height);
   margin-bottom: 16px;
   color: #ffffff;
+  text-align: center;
 }
 
 .about-section-title {

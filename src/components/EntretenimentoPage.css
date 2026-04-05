@@ -17,8 +17,10 @@
 .entretenimento-container {
   position: relative;
   z-index: 2;
-  max-width: 1200px;
-  margin: 0 auto;
+  width: min(100%, var(--internal-page-content-max-width));
+  max-width: var(--internal-page-content-max-width);
+  box-sizing: border-box;
+  margin: 0 auto 48px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -29,6 +31,7 @@
   line-height: var(--internal-page-title-line-height);
   margin-bottom: 16px;
   color: #ffffff;
+  text-align: center;
 }
 
 .entretenimento-section-title {
@@ -45,9 +48,15 @@
 }
 
 .entretenimento-grid {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
+  width: min(100%, var(--internal-page-content-max-width-wide));
+  max-width: var(--internal-page-content-max-width-wide);
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .entretenimento-card {
@@ -110,6 +119,10 @@
 @media (max-width: 768px) {
   .entretenimento-page {
     padding: 90px 16px 60px;
+  }
+
+  .entretenimento-container {
+    margin-bottom: 32px;
   }
 
   .entretenimento-text {

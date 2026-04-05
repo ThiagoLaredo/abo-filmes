@@ -1,6 +1,8 @@
 :root {
   --font-display: 'Quiche-Display', sans-serif;
   --font-ui: 'Montserrat', sans-serif;
+  --internal-page-content-max-width: 880px;
+  --internal-page-content-max-width-wide: 1200px;
   --internal-page-title-size-desktop: clamp(34px, 4vw, 54px);
   --internal-page-title-size-mobile: clamp(28px, 7vw, 36px);
   --internal-page-title-line-height: 1.05;

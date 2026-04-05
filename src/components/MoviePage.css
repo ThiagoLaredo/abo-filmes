@@ -14,20 +14,26 @@
   pointer-events: none;
 }
 
+.movie-page-inner {
+  position: relative;
+  z-index: 2;
+  width: min(100%, var(--internal-page-content-max-width-wide));
+  max-width: var(--internal-page-content-max-width-wide);
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
 .movie-page h1 {
   font-size: var(--internal-page-title-size-desktop);
   line-height: var(--internal-page-title-line-height);
   margin-bottom: 40px;
   color: white;
-  position: relative;
-  z-index: 2;
+  text-align: center;
 }
 
 .vimeo-embed {
   display: flex;
   justify-content: center;
-  position: relative;
-  z-index: 2;
 }
 
 .vimeo-embed iframe {
