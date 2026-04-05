@@ -1,6 +1,9 @@
 :root {
   --font-display: 'Quiche-Display', sans-serif;
   --font-ui: 'Montserrat', sans-serif;
+  --internal-page-title-size-desktop: clamp(34px, 4vw, 54px);
+  --internal-page-title-size-mobile: clamp(28px, 7vw, 36px);
+  --internal-page-title-line-height: 1.05;
   font-family: var(--font-display);
   line-height: 1.5;
   font-weight: 100;
@@ -52,6 +55,12 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
   font-weight: 800; /* extra bold */
+}
+
+@media (max-width: 768px) {
+  :root {
+    --internal-page-title-size-desktop: var(--internal-page-title-size-mobile);
+  }
 }
 
 @media (prefers-color-scheme: light) {

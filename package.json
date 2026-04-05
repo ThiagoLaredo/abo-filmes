@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "images:still": "node optimize-still-images.js"
+    "images:fotografia": "node optimize-fotografia-images.js"
   },
   "dependencies": {
     "gsap": "^3.13.0",

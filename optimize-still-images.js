@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const ROOT_DIR = path.join(__dirname, 'public', 'still');
+const ROOT_DIR = path.join(__dirname, 'public', 'fotografia');
 const OUTPUT_WIDTHS = [700, 1400, 2200];
 const SOURCE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.tif', '.tiff', '.webp']);
 
@@ -86,4 +86,4 @@ fs.writeFileSync(
   'utf8'
 );
 
-console.log('✨ Otimização concluída. Manifest salvo em public/still/manifest.json');
+console.log('✨ Otimização concluída. Manifest salvo em public/fotografia/manifest.json');

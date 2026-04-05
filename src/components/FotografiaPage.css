@@ -1,0 +1,119 @@
+.fotografia-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 110px 20px 80px;
+  overflow: hidden;
+}
+
+.fotografia-page-curtain {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.fotografia-container {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto 48px;
+}
+
+.fotografia-title {
+  color: #ffffff;
+  font-size: var(--internal-page-title-size-desktop);
+  line-height: var(--internal-page-title-line-height);
+  margin-bottom: 18px;
+}
+
+.fotografia-text {
+  color: #b8b8b8;
+  font-size: clamp(16px, 1.6vw, 19px);
+  line-height: 1.7;
+}
+
+.fotografia-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.fotografia-item {
+  position: relative;
+  opacity: 0;
+  transform: translateY(36px);
+}
+
+.fotografia-item-wrapper {
+  position: relative;
+  display: block;
+  line-height: 0;
+}
+
+.fotografia-item picture,
+.fotografia-item img {
+  display: block;
+  width: 100%;
+}
+
+.fotografia-item img {
+  height: auto;
+}
+
+.fotografia-item-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.fotografia-item:hover .fotografia-item-overlay {
+  opacity: 1;
+}
+
+.fotografia-item-name {
+  color: #ffffff;
+  font-size: clamp(14px, 1.4vw, 20px);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0 12px;
+}
+
+@media (max-width: 768px) {
+  .fotografia-page {
+    padding: 90px 16px 60px;
+  }
+
+  .fotografia-container {
+    margin-bottom: 32px;
+  }
+
+  .fotografia-text {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .fotografia-grid {
+    gap: 20px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .fotografia-grid {
+    grid-template-columns: 1fr;
+  }
+}

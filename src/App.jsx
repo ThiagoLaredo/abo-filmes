@@ -10,7 +10,7 @@ import AboutPage from "./components/AboutPage";
 import ServicosPage from "./components/ServicosPage";
 import EntretenimentoPage from "./components/EntretenimentoPage";
 import ContactPage from "./components/ContactPage";
-import StillPage from "./components/StillPage";
+import FotografiaPage from "./components/FotografiaPage";
 import Footer from "./components/Footer";
 import SideHeader from "./components/SideHeader";
 import SiteLogo from "./components/SiteLogo";
@@ -62,7 +62,7 @@ function App() {
             <Route path="/servicos" element={<ServicosPage />} />
             <Route path="/entretenimento" element={<EntretenimentoPage />} />
             <Route path="/contato" element={<ContactPage />} />
-            <Route path="/still" element={<StillPage />} />
+            <Route path="/fotografia" element={<FotografiaPage />} />
             <Route path="/filmes/:slug" element={<MoviePage />} />
             <Route path="/filme/:id" element={<MoviePage />} />
           </Routes>

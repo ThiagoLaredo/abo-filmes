@@ -17,16 +17,16 @@
 .entretenimento-container {
   position: relative;
   z-index: 2;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
 }
 
 .entretenimento-main-title {
-  font-size: clamp(24px, 2.5vw, 40px); /* valores reduzidos */
-  line-height: 1.1;
+  font-size: var(--internal-page-title-size-desktop);
+  line-height: var(--internal-page-title-line-height);
   margin-bottom: 16px;
   color: #ffffff;
 }
@@ -44,17 +44,113 @@
   color: #ffffff;
 }
 
+.entretenimento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.entretenimento-card {
+  position: relative;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  border-radius: 12px;
+}
+
+.entretenimento-card-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.entretenimento-card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.entretenimento-card-title {
+  font-family: var(--font-display);
+  color: #ffffff;
+  font-size: clamp(15px, 1.4vw, 20px);
+  font-weight: 700;
+  text-align: center;
+  padding: 10px 14px;
+  line-height: 1.25;
+}
+
+.entretenimento-card:hover .entretenimento-card-image,
+.entretenimento-card:focus-visible .entretenimento-card-image {
+  transform: scale(1.04);
+}
+
+.entretenimento-card:hover .entretenimento-card-overlay,
+.entretenimento-card:focus-visible .entretenimento-card-overlay {
+  opacity: 1;
+}
+
+.entretenimento-card:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
 @media (max-width: 768px) {
   .entretenimento-page {
     padding: 90px 16px 60px;
   }
 
-  .entretenimento-main-title {
-    font-size: clamp(28px, 5vw, 36px);
-  }
-
   .entretenimento-text {
     font-size: 15px;
     line-height: 1.65;
+  }
+
+  .entretenimento-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .entretenimento-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.48) 28%, rgba(0, 0, 0, 0) 62%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .entretenimento-card-overlay {
+    inset: auto 0 0 0;
+    background: transparent;
+    justify-content: center;
+    text-align: center;
+    padding: 12px 14px;
+    opacity: 1;
+    z-index: 2;
+  }
+
+  .entretenimento-card-title {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .entretenimento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .entretenimento-card-title {
+    font-size: 18px;
   }
 }

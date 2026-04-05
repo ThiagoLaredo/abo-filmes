@@ -26,8 +26,8 @@
 }
 
 .contact-header h1 {
-  font-size: clamp(34px, 4vw, 54px);
-  line-height: 1.05;
+  font-size: var(--internal-page-title-size-desktop);
+  line-height: var(--internal-page-title-line-height);
   color: #ffffff;
   margin-bottom: 12px;
 }

@@ -1,6 +1,6 @@
 const createImage = (id, widths, width, height, alt) => ({
   id,
-  basePath: `/still/edu-pimenta/${id}`,
+  basePath: `/fotografia/edu-pimenta/${id}`,
   widths,
   width,
   height,

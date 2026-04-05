@@ -249,7 +249,7 @@ const SideHeader = () => {
             <a href="/#filmes" className="menu-link" onClick={handleFilmesClick} ref={(el) => (menuLinksRef.current[1] = el)}>{renderMenuLabel('FILMES')}</a>
             <Link to="/servicos" className="menu-link" onClick={closeMenu} ref={(el) => (menuLinksRef.current[2] = el)}>{renderMenuLabel('SERVIÇOS')}</Link>
             <Link to="/contato" className="menu-link" onClick={closeMenu} ref={(el) => (menuLinksRef.current[3] = el)}>{renderMenuLabel('CONTATO')}</Link>
-            <Link to="/still" className="menu-link" onClick={closeMenu} ref={(el) => (menuLinksRef.current[4] = el)}>{renderMenuLabel('STILL')}</Link>
+            <Link to="/fotografia" className="menu-link" onClick={closeMenu} ref={(el) => (menuLinksRef.current[4] = el)}>{renderMenuLabel('FOTOGRAFIA')}</Link>
             <Link to="/entretenimento" className="menu-link" onClick={closeMenu} ref={(el) => (menuLinksRef.current[5] = el)}>{renderMenuLabel('ENTRETENIMENTO')}</Link>
 
             {/* Ícones sociais para mobile */}

@@ -8,6 +8,7 @@ const ServicosPage = () => {
   const curtainRef = useRef(null);
   const titleRef = useRef(null);
   const serviceCharsRef = useRef([]);
+  const serviceSeparatorsRef = useRef([]);
 
   const services = ['PROPAGANDA', 'DOCUMENTÁRIO', 'SOCIAL', 'EXPERIÊNCIAS', 'ENTRETENIMENTO'];
 
@@ -33,10 +34,12 @@ const ServicosPage = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const serviceChars = serviceCharsRef.current.filter(Boolean);
+      const serviceSeparators = serviceSeparatorsRef.current.filter(Boolean);
 
       gsap.set(titleRef.current, { opacity: 0, y: 24 });
       gsap.set(curtainRef.current, { scaleY: 1, transformOrigin: 'top center' });
       gsap.set(serviceChars, { opacity: 0, x: 16, filter: 'blur(4px)' });
+      gsap.set(serviceSeparators, { scaleX: 0, transformOrigin: 'left center' });
 
       gsap.timeline()
         .to(curtainRef.current, {
@@ -65,6 +68,16 @@ const ServicosPage = () => {
             ease: 'power2.out',
           },
           '-=0.12'
+        )
+        .to(
+          serviceSeparators,
+          {
+            scaleX: 1,
+            duration: 0.45,
+            stagger: 0.08,
+            ease: 'power2.out',
+          },
+          '-=0.18'
         );
 
     }, pageRef);
@@ -87,6 +100,14 @@ const ServicosPage = () => {
               return (
                 <li key={service} className="servicos-list-item">
                   {renderServiceLabel(service, charStartIndex)}
+                  {serviceIndex < services.length - 1 ? (
+                    <span
+                      className="servicos-list-separator"
+                      ref={(element) => {
+                        serviceSeparatorsRef.current[serviceIndex] = element;
+                      }}
+                    />
+                  ) : null}
                 </li>
               );
             })}
