@@ -3,14 +3,44 @@ import gsap from "gsap";
 import "./Hero.css";
 import VideoModal from "./VideoModal";
 
+const isSafariBrowser = () => {
+  if (typeof navigator === "undefined") {
+    return false;
+  }
+
+  const { userAgent } = navigator;
+
+  return /Safari/i.test(userAgent)
+    && !/Chrome|CriOS|Edg|OPR|Firefox|FxiOS|Android/i.test(userAgent);
+};
+
 export default function Hero() {
   const [isReelModalOpen, setIsReelModalOpen] = useState(false);
   const heroCircleRadius = 82;
   const heroCircleLength = Math.round(2 * Math.PI * heroCircleRadius);
   const heroCircleText = "Assista o Vídeo \u00A0\u00A0\u2022\u00A0\u00A0\u00A0 Assista o Vídeo \u00A0\u00A0\u2022\u00A0\u00A0\u00A0 Assista o Vídeo \u00A0\u00A0\u2022\u00A0\u00A0\u00A0";
+  const isSafari = isSafariBrowser();
+  const heroSafariCircleText = Array.from(heroCircleText)
+    .map((char, index, chars) => {
+      if (char === " " || char === "\u00A0") {
+        return char;
+      }
+
+      const nextChar = chars[index + 1];
+
+      if (!nextChar || nextChar === " " || nextChar === "\u00A0") {
+        return char;
+      }
+
+      return `${char}\u2009`;
+    })
+    .join("");
 
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    gsap.set(".hero-play-badge", { transformOrigin: "50% 50%" });
+    gsap.set(".hero-play-core", { transformOrigin: "50% 50%" });
 
     // Animação do vídeo (clipPath + fade in)
     tl.fromTo(
@@ -28,9 +58,35 @@ export default function Hero() {
       // Texto aparece depois do vídeo
       .fromTo(
         ".hero-play-badge",
-        { opacity: 0, y: 50, scale: 0.9 },
-        { opacity: 1, y: 0, scale: 1, duration: 1 },
+        {
+          opacity: 0,
+          rotate: -120,
+          scale: 0.92,
+        },
+        {
+          opacity: 1,
+          rotate: 0,
+          scale: 1,
+          duration: 1.15,
+          ease: "power2.out",
+          keyframes: [
+            { rotate: -82, scale: 0.95, duration: 0.28, ease: "power1.out" },
+            { rotate: -34, scale: 0.985, duration: 0.3, ease: "power1.inOut" },
+            { rotate: 0, scale: 1, duration: 0.26, ease: "power2.out" },
+          ],
+        },
         "-=0.3"
+      )
+      .fromTo(
+        ".hero-play-core",
+        { scale: 0.9, opacity: 0.55 },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.42,
+          ease: "power2.out",
+        },
+        "-=0.72"
       )
       // Seta de scroll entra por último
       .to(
@@ -86,9 +142,15 @@ export default function Hero() {
                 d="M 110,110 m -82,0 a 82,82 0 1,1 164,0 a 82,82 0 1,1 -164,0"
               />
             </defs>
-            <text textLength={heroCircleLength} lengthAdjust="spacing">
-              <textPath href="#heroCirclePath" startOffset="0%">
-                {heroCircleText}
+            <text textLength={heroCircleLength} lengthAdjust={isSafari ? "spacingAndGlyphs" : "spacing"}>
+              <textPath
+                href="#heroCirclePath"
+                startOffset="0%"
+                textLength={isSafari ? heroCircleLength : undefined}
+                lengthAdjust={isSafari ? "spacingAndGlyphs" : undefined}
+                letterSpacing={isSafari ? "0.08em" : undefined}
+              >
+                {isSafari ? heroSafariCircleText : heroCircleText}
               </textPath>
             </text>
           </svg>
@@ -128,15 +190,15 @@ export default function Hero() {
             height="34"
             rx="11"
             ry="11"
-            stroke="white"
-            strokeWidth="2"
+            stroke="currentColor"
+            strokeWidth="1.35"
             fill="none"
           />
           <circle
             cx="12"
             cy="10"
             r="2"
-            fill="white"
+            fill="currentColor"
             className="mouse-wheel"
           />
         </svg>
