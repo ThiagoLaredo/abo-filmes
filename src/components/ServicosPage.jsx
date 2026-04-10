@@ -10,7 +10,7 @@ const ServicosPage = () => {
   const serviceCharsRef = useRef([]);
   const serviceSeparatorsRef = useRef([]);
 
-  const services = ['PROPAGANDA', 'DOCUMENTÁRIO', 'SOCIAL', 'EXPERIÊNCIAS', 'ENTRETENIMENTO'];
+  const services = ['PROPAGANDA', 'DOCUMENTÁRIO', 'MÍDIAS SOCIAIS', 'EXPERIÊNCIAS', 'ENTRETENIMENTO'];
 
   const renderServiceLabel = (label, startIndex = 0) => (
     Array.from(label).map((char, index) => (

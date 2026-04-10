@@ -132,9 +132,26 @@
   outline-offset: 2px;
 }
 
+.contact-submit:disabled {
+  opacity: 0.72;
+  cursor: wait;
+}
+
 .contact-feedback {
-  color: #d5d5d5;
   font-size: 14px;
+  min-height: 20px;
+}
+
+.contact-feedback-loading {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.contact-feedback-success {
+  color: #d5d5d5;
+}
+
+.contact-feedback-error {
+  color: #ffb3b3;
 }
 
 @media (max-width: 768px) {

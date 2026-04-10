@@ -230,10 +230,10 @@ const SideHeader = () => {
         </button>
         <Link to="/contato" className="contact-link">AGENDE UMA CONVERSA</Link>
         <div className="social-icons">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram da Abó Filmes">
+          <a href="https://www.instagram.com/abofilmes" target="_blank" rel="noopener noreferrer" aria-label="Instagram da Abó Filmes">
             <FaInstagram />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn da Abó Filmes">
+          <a href="https://www.linkedin.com/company/ab%C3%B3-filmes/about/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn da Abó Filmes">
             <FaLinkedin />
           </a>
           <a href="https://vimeo.com/user149765444" target="_blank" rel="noopener noreferrer" aria-label="Vimeo da Abó Filmes">
@@ -262,19 +262,19 @@ const SideHeader = () => {
             <Link to="/sobre" className="menu-link" onClick={handleMenuNavigation('/sobre')} ref={(el) => (menuLinksRef.current[0] = el)}>{renderMenuLabel('SOBRE')}</Link>
             <a href="/#filmes" className="menu-link" onClick={handleFilmesClick} ref={(el) => (menuLinksRef.current[1] = el)}>{renderMenuLabel('FILMES')}</a>
             <Link to="/servicos" className="menu-link" onClick={handleMenuNavigation('/servicos')} ref={(el) => (menuLinksRef.current[2] = el)}>{renderMenuLabel('SERVIÇOS')}</Link>
-            <Link to="/contato" className="menu-link" onClick={handleMenuNavigation('/contato')} ref={(el) => (menuLinksRef.current[3] = el)}>{renderMenuLabel('CONTATO')}</Link>
-            <Link to="/fotografia" className="menu-link" onClick={handleMenuNavigation('/fotografia')} ref={(el) => (menuLinksRef.current[4] = el)}>{renderMenuLabel('FOTOGRAFIA')}</Link>
-            <Link to="/entretenimento" className="menu-link" onClick={handleMenuNavigation('/entretenimento')} ref={(el) => (menuLinksRef.current[5] = el)}>{renderMenuLabel('ENTRETENIMENTO')}</Link>
+            <Link to="/fotografia" className="menu-link" onClick={handleMenuNavigation('/fotografia')} ref={(el) => (menuLinksRef.current[3] = el)}>{renderMenuLabel('FOTOGRAFIA')}</Link>
+            <Link to="/entretenimento" className="menu-link" onClick={handleMenuNavigation('/entretenimento')} ref={(el) => (menuLinksRef.current[4] = el)}>{renderMenuLabel('ENTRETENIMENTO')}</Link>
+            <Link to="/contato" className="menu-link" onClick={handleMenuNavigation('/contato')} ref={(el) => (menuLinksRef.current[5] = el)}>{renderMenuLabel('CONTATO')}</Link>
 
             {/* Ícones sociais para mobile */}
             <div className="social-icons-mobile">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram da Abó Filmes">
+              <a href="https://www.instagram.com/abofilmes" target="_blank" rel="noopener noreferrer" aria-label="Instagram da Abó Filmes">
                 <FaInstagram />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn da Abó Filmes">
+              <a href="https://www.linkedin.com/company/ab%C3%B3-filmes/about/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn da Abó Filmes">
                 <FaLinkedin />
               </a>
-              <a href="https://vimeo.com" target="_blank" rel="noopener noreferrer" aria-label="Vimeo da Abó Filmes">
+              <a href="https://vimeo.com/user149765444" target="_blank" rel="noopener noreferrer" aria-label="Vimeo da Abó Filmes">
                 <FaVimeo />
               </a>
             </div>

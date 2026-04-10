@@ -12,10 +12,10 @@ export default function Footer() {
         <nav className="footer-col footer-menu" aria-label="Menu do rodapé">
           <a href="/#filmes">Filmes</a>
           <Link to="/sobre">Sobre</Link>
-            <Link to="/servicos">Serviços</Link>
-          <Link to="/contato">Contato</Link>
+          <Link to="/servicos">Serviços</Link>
           <Link to="/fotografia">Fotografia</Link>
           <Link to="/entretenimento">Entretenimento</Link>
+          <Link to="/contato">Contato</Link>
         </nav>
 
       </div>

@@ -2,17 +2,22 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import './ContactPage.css';
 
+const WEB3FORMS_ACCESS_KEY = 'f875aa3f-2374-4293-adb5-54e41b76c48e';
+
+const initialFormData = {
+  nome: '',
+  email: '',
+  empresa: '',
+  telefone: '',
+  mensagem: '',
+};
+
 const ContactPage = () => {
   const pageRef = useRef(null);
   const contentRef = useRef(null);
   const curtainRef = useRef(null);
-  const [formData, setFormData] = useState({
-    nome: '',
-    email: '',
-    empresa: '',
-    mensagem: '',
-  });
-  const [isSent, setIsSent] = useState(false);
+  const [formData, setFormData] = useState(initialFormData);
+  const [submitState, setSubmitState] = useState({ status: 'idle', message: '' });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -22,16 +27,48 @@ const ContactPage = () => {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsSent(true);
-    setFormData({
-      nome: '',
-      email: '',
-      empresa: '',
-      telefone: '',
-      mensagem: '',
-    });
+
+    setSubmitState({ status: 'loading', message: 'Enviando mensagem...' });
+
+    const submission = new FormData();
+    submission.append('access_key', WEB3FORMS_ACCESS_KEY);
+    submission.append('name', formData.nome);
+    submission.append('email', formData.email);
+    submission.append('phone', formData.telefone);
+    submission.append('company', formData.empresa);
+    submission.append('message', formData.mensagem);
+    submission.append('subject', 'Novo contato pelo site Abó Filmes');
+    submission.append('from_name', formData.nome);
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: submission,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitState({
+          status: 'success',
+          message: 'Mensagem enviada. Retornaremos em breve.',
+        });
+        setFormData(initialFormData);
+        return;
+      }
+
+      setSubmitState({
+        status: 'error',
+        message: 'Nao foi possivel enviar agora. Tente novamente em instantes.',
+      });
+    } catch {
+      setSubmitState({
+        status: 'error',
+        message: 'Erro de conexao ao enviar a mensagem. Tente novamente em instantes.',
+      });
+    }
   };
 
   useEffect(() => {
@@ -77,6 +114,7 @@ const ContactPage = () => {
                 name="nome"
                 value={formData.nome}
                 onChange={handleChange}
+                autoComplete="name"
                 placeholder="Nome"
                 required
               />
@@ -88,17 +126,19 @@ const ContactPage = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                autoComplete="email"
                 placeholder="E-mail"
                 required
               />
             </label>
 
-                        <label className="contact-field">
+            <label className="contact-field">
               <input
-                type="text"
+                type="tel"
                 name="telefone"
                 value={formData.telefone}
                 onChange={handleChange}
+                autoComplete="tel"
                 placeholder="Celular"
               />
             </label>
@@ -109,6 +149,7 @@ const ContactPage = () => {
                 name="empresa"
                 value={formData.empresa}
                 onChange={handleChange}
+                autoComplete="organization"
                 placeholder="Empresa"
               />
             </label>
@@ -126,10 +167,14 @@ const ContactPage = () => {
             </label>
           </div>
 
-          <button type="submit" className="contact-submit">Enviar mensagem</button>
+          <button type="submit" className="contact-submit" disabled={submitState.status === 'loading'}>
+            {submitState.status === 'loading' ? 'Enviando...' : 'Enviar mensagem'}
+          </button>
 
-          {isSent && (
-            <p className="contact-feedback">Mensagem enviada. Retornaremos em breve.</p>
+          {submitState.message && (
+            <p className={`contact-feedback contact-feedback-${submitState.status}`} aria-live="polite">
+              {submitState.message}
+            </p>
           )}
         </form>
       </section>
