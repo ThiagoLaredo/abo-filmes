@@ -74,15 +74,26 @@ const MoviePage = () => {
       <div className="movie-page-inner">
         <h1 ref={titleRef}>{movie.title}</h1>
         <div className="vimeo-embed" ref={videoRef}>
-          <iframe
-            src={`https://player.vimeo.com/video/${movie.vimeoId}`}
-            width="640"
-            height="360"
-            frameBorder="0"
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowFullScreen
-            title={movie.title}
-          ></iframe>
+          {movie.videoSrc ? (
+            <video
+              src={movie.videoSrc}
+              controls
+              autoPlay
+              playsInline
+              width="640"
+              height="360"
+            />
+          ) : (
+            <iframe
+              src={`https://player.vimeo.com/video/${movie.vimeoId}`}
+              width="640"
+              height="360"
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+              title={movie.title}
+            ></iframe>
+          )}
         </div>
       </div>
     </div>

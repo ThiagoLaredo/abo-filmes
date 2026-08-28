@@ -10,6 +10,7 @@ const brands = [
   { id: 2, name: 'Brand Two', logo: '/brands/logo-kwai.svg' },
   { id: 3, name: 'Brand Three', logo: '/brands/logo-planoeplano.svg'},
   { id: 4, name: 'Brand Four', logo: '/brands/logo-mercado-livre.svg' },
+  { id: 5, name: 'Cazé TV', logo: '/brands/cazetv.png' },
 
 ];
 

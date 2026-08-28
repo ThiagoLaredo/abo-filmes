@@ -8,6 +8,15 @@ export const movies = [
     date: "2025-12"
   },
   {
+    id: 11,
+    slug: "caza-caze-tv",
+    title: "Caza Caze TV",
+    image: "movies/Caza-CazeTV.webp",
+    vimeoId: "",
+    videoSrc: "/Caza-Cazetv.mp4",
+    date: "2026-08"
+  },
+  {
     id: 10,
     slug: "tegra-sp-open-2025",
     title: "Tegra SP Open 2025",
